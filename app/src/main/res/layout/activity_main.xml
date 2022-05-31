@@ -37,11 +37,12 @@
                 android:id="@+id/btn_Protectoras"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border_button"
-                android:textColor="@color/white"
-                android:text="@string/btn_Protectoras"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_border_button"
+                android:onClick="onClick"
+                android:text="@string/btn_Protectoras"
 
+                android:textColor="@color/white"
                 tools:visibility="visible" />
 
 
@@ -49,19 +50,21 @@
                 android:id="@+id/btn_Encuentra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border_button"
-                android:textColor="@color/white"
                 android:layout_marginTop="40dp"
-                android:text="@string/btn_Encontrar" />
+                android:background="@drawable/rounded_border_button"
+                android:onClick="onClick"
+                android:text="@string/btn_Encontrar"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btn_Blog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border_button"
-                android:textColor="@color/white"
                 android:layout_marginTop="40dp"
-                android:text="@string/btn_Blog" />
+                android:background="@drawable/rounded_border_button"
+                android:onClick="onClick"
+                android:text="@string/btn_Blog"
+                android:textColor="@color/white" />
 
            <!-- <Button
                 android:id="@+id/btnBlog"
