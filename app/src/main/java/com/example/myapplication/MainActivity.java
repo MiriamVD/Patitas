@@ -31,7 +31,7 @@ private Button btn_Blog;
         }
         switch (btn_Encuentra.getId()) {
             case R.id.btn_Encuentra:
-                Intent movimento1= new Intent(MainActivity.this, AnimalesPerdidos.class);
+                Intent movimento1= new Intent(MainActivity.this, Animales_Perdidos.class);
                 startActivity(movimento1);
         }
         switch (btn_Blog.getId()) {
