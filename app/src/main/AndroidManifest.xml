@@ -10,10 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Blog"
-            android:exported="false" />
+            android:name=".AnimalesPerdidos"
+            android:exported="false"
+            android:label="@string/title_activity_animales_perdidos"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".Animales_perdidos"
+            android:name=".Blog"
             android:exported="false" />
         <activity
             android:name=".Protectoras"

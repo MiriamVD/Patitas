@@ -31,12 +31,12 @@ private Button btn_Blog;
         }
         switch (btn_Encuentra.getId()) {
             case R.id.btn_Encuentra:
-                Intent movimento1= new Intent(MainActivity.this, Protectoras.class);
+                Intent movimento1= new Intent(MainActivity.this, AnimalesPerdidos.class);
                 startActivity(movimento1);
         }
         switch (btn_Blog.getId()) {
             case R.id.btn_Blog:
-                Intent movimento1= new Intent(MainActivity.this, Protectoras.class);
+                Intent movimento1= new Intent(MainActivity.this, Blog.class);
                 startActivity(movimento1);
         }
 

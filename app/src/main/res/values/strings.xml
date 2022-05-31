@@ -3,4 +3,7 @@
     <string name="btn_Protectoras">Protectoras</string>
     <string name="btn_Encontrar">Animales perdidos</string>
     <string name="btn_Blog">Blog</string>
+    <string name="title_activity_animales_perdidos">AnimalesPerdidos</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
