@@ -17,7 +17,7 @@ private Button btn_Blog;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_Protectoras=findViewById(R.id.btn_Blog);
+        btn_Protectoras=findViewById(R.id.btn_Protectoras);
         btn_Encuentra=findViewById(R.id.btn_Encuentra);
         btn_Blog=findViewById(R.id.btn_Blog);
     }
