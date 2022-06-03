@@ -31,7 +31,7 @@ private Button btn_Blog;
                 break;
 
             case R.id.btn_Encuentra:
-                Intent movimento2= new Intent(MainActivity.this, Animales_Perdidos.class);
+                Intent movimento2= new Intent(MainActivity.this, AnimalesPerdidos.class);
                 startActivity(movimento2);
                 break;
 

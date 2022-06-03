@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication" >
         <activity
-            android:name=".Animales_Perdidos"
+            android:name=".AnimalesPerdidos"
             android:exported="false" />
         <activity
             android:name=".ui.main.Animales_Perdidos"
