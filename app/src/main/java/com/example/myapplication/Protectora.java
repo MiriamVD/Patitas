@@ -15,8 +15,8 @@ public class Protectora {
 
     private long id;
 
-    public Protectora(Image imgProtectora, String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora, long id){
-        this.imgProtectora = imgProtectora;
+    public Protectora(String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora, long id){
+        //this.imgProtectora = imgProtectora;
         this.nameProtectora = nameProtectora;
         this.numberProtectora = numberProtectora;
         this.directionProtectora = directionProtectora;
@@ -26,8 +26,8 @@ public class Protectora {
         this.id = id;
     }
 
-    public Protectora(Image imgProtectora, String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora){
-        this.imgProtectora = imgProtectora;
+    public Protectora( String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora){
+      //  this.imgProtectora = imgProtectora;
         this.nameProtectora = nameProtectora;
         this.numberProtectora = numberProtectora;
 
@@ -43,7 +43,7 @@ public class Protectora {
     }
 
     public void setImgProtectora(Image imgProtectora) {
-        this.imgProtectora = imgProtectora;
+       this.imgProtectora = imgProtectora;
     }
 
     public String getNameProtectora() {
