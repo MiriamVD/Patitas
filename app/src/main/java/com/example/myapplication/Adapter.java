@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
@@ -47,7 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
         //obtenemos los datos de la lista
         Image img = protectora.getImgProtectora();
         String name = protectora.getNameProtectora();
-        String description=protectora.getDescriptionProtectora();
+
         String number =protectora.getNumberProtectora();
         //ponemos a los textview los datos con settext
        // holder.img.setImgage()
@@ -75,8 +74,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
             this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
             this.name = itemView.findViewById(R.id.nameProtectora);
-            this.description= itemView.findViewById(R.id.descriptionProtectora);
-            this.number = itemView.findViewById(R.id.numberProtectora);
+            this.description= itemView.findViewById(R.id.numberProtectora);
+            this.number = itemView.findViewById(R.id.directionProtectora);
 
         }
 

@@ -32,6 +32,8 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         btnFloat.setOnClickListener((View.OnClickListener)this);
 
         listaProtectora= new ArrayList<>();
+        //listaProtectora.add(descarga.jpg, "Zarpas y colmillos"," 987987987","calle ni idea","64789", "http:sfsoefso/dfsf");
+        //listaProtectora.add()
         adapter= new Adapter(listaProtectora);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager mLayoutManager= new LinearLayoutManager(getApplicationContext());
