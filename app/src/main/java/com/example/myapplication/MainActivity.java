@@ -24,20 +24,21 @@ private Button btn_Blog;
 
     @Override
     public void onClick(View view) {
-        switch (btn_Protectoras.getId()) {
+        switch (view.getId()) {
             case R.id.btn_Protectoras:
                 Intent movimento1= new Intent(MainActivity.this, Protectoras.class);
                 startActivity(movimento1);
-        }
-        switch (btn_Encuentra.getId()) {
+                break;
+
             case R.id.btn_Encuentra:
-                Intent movimento1= new Intent(MainActivity.this, Animales_Perdidos.class);
-                startActivity(movimento1);
-        }
-        switch (btn_Blog.getId()) {
+                Intent movimento2= new Intent(MainActivity.this, Animales_Perdidos.class);
+                startActivity(movimento2);
+                break;
+
             case R.id.btn_Blog:
-                Intent movimento1= new Intent(MainActivity.this, Blog.class);
-                startActivity(movimento1);
+                Intent movimento3= new Intent(MainActivity.this, Blog.class);
+                startActivity(movimento3);
+                break;
         }
 
     }
