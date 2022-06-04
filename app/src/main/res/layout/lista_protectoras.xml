@@ -39,7 +39,7 @@
                     android:id="@+id/nameBlog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="3dp"
                     android:text="TextView"
                     android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
                     android:id="@+id/websiteProtectora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:autoLink="web"
                     android:text="TextView"
                     android:textColorLink="@color/primaryDarkColor" />
