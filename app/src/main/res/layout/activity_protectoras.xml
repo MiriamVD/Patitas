@@ -23,10 +23,13 @@
         android:id="@+id/btnFloat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="57dp"
+        android:background="@color/primaryLightColor"
         android:clickable="true"
+        app:backgroundTint="@color/primaryLightColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

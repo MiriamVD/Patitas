@@ -38,17 +38,37 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
                 " 987987987",
                 "calle ni idea",
                 "64789",
-                "http:sfsoefso/dfsf"));
-        listaProtectora.add(new Protectora("hola",
+                "https://www.zarpasycolmillos.es/"));
+        listaProtectora.add(new Protectora("CIPAR",
                 " 987987987",
                 "calle ni idea",
                 "64789",
-                "http:sfsoefso/dfsf"));
-        listaProtectora.add(new Protectora("adios",
+                "https://www.facebook.com/centroCIPAR/"));
+        listaProtectora.add(new Protectora("ASCAN",
                 " 987987987",
                 "calle ni idea",
                 "64789",
-                "http:sfsoefso/dfsf"));
+                "https://ascan.com.es/"));
+        listaProtectora.add(new Protectora("F.A.P.A.M.",
+                " 987987987",
+                "calle ni idea",
+                "64789",
+                "https://fapam.org/"));
+        listaProtectora.add(new Protectora("APAC",
+                " 987987987",
+                "calle ni idea",
+                "64789",
+                "https://www.facebook.com/apac.ciempozuelos.9"));
+        listaProtectora.add(new Protectora("PALEVLAS",
+                " 987987987",
+                "calle ni idea",
+                "64789",
+                "https://palevlasprotectora.es/"));
+        listaProtectora.add(new Protectora("S.P.A.P",
+                "913119133",
+                "calle ni idea",
+                "64789",
+                "http://www.spap.net/"));
 
             adapter = new Adapter(listaProtectora);
 
