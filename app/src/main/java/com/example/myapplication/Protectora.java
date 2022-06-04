@@ -1,11 +1,12 @@
 package com.example.myapplication;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 import javax.sql.StatementEvent;
 
 public class Protectora {
-    private Image imgProtectora;
+    private Drawable imgProtectora;
     private String nameProtectora;
     private String numberProtectora;
     private String directionProtectora;
@@ -15,8 +16,8 @@ public class Protectora {
 
     private long id;
 
-    public Protectora(String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora, long id){
-        //this.imgProtectora = imgProtectora;
+    public Protectora(Drawable imgProtectora, String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora, long id){
+        this.imgProtectora = imgProtectora;
         this.nameProtectora = nameProtectora;
         this.numberProtectora = numberProtectora;
         this.directionProtectora = directionProtectora;
@@ -26,8 +27,8 @@ public class Protectora {
         this.id = id;
     }
 
-    public Protectora( String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora){
-      //  this.imgProtectora = imgProtectora;
+    public Protectora(Drawable imgProtectora, String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora){
+        this.imgProtectora = imgProtectora;
         this.nameProtectora = nameProtectora;
         this.numberProtectora = numberProtectora;
 
@@ -37,13 +38,12 @@ public class Protectora {
     }
 
 
-
-    public Image getImgProtectora() {
+    public Drawable getImgProtectora() {
         return imgProtectora;
     }
 
-    public void setImgProtectora(Image imgProtectora) {
-       this.imgProtectora = imgProtectora;
+    public void setImgProtectora(Drawable imgProtectora) {
+        this.imgProtectora = imgProtectora;
     }
 
     public String getNameProtectora() {

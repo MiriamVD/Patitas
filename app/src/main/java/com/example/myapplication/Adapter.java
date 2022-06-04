@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,14 +45,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
         //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
-        Image img = protectora.getImgProtectora();
+        Drawable img = protectora.getImgProtectora();
         String name = protectora.getNameProtectora();
         String number =protectora.getNumberProtectora();
         String direction = protectora.getDirectionProtectora();
         String cd = protectora.getCdProtectora();
         String website = protectora.getWebsiteProtectora();
         //ponemos a los textview los datos con settext
-      // holder.img.setImage();
+
+
+        holder.img.setBackgroundDrawable(img);
         holder.name.setText(name);
         holder.number.setText(number);
         holder.direction.setText(direction);
@@ -76,7 +79,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
             super(itemView);
             //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-
+                this.img = itemView.findViewById(R.id.imgProtectora);
                 this.name = itemView.findViewById(R.id.nameProtectora);
                 this.number= itemView.findViewById(R.id.numberProtectora);
                 this.direction = itemView.findViewById(R.id.directionProtectora);
