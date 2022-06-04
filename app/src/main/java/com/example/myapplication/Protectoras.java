@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -8,14 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Protectoras extends AppCompatActivity implements View.OnClickListener {
@@ -35,7 +32,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         recyclerView.addItemDecoration(itemDecoration);
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        btnFloat=findViewById(R.id.btnFloat);
+        btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
 
         listaProtectora= new ArrayList<>();
@@ -90,7 +87,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnFloat:
+            case R.id.btnFloatHome:
                 Intent returned= new Intent(Protectoras.this, MainActivity.class);
                 startActivity(returned);
                 break;

@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +32,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
     // Instacianciamos nuestro recycler
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View lista_cervezas= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_protectoras,viewGroup,false);
-        return new ViewHolderDatos(lista_cervezas);
+        View lista_protectora= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_protectoras,viewGroup,false);
+        return new ViewHolderDatos(lista_protectora);
     }
 
     @Override
@@ -79,9 +78,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
             super(itemView);
             //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-                this.img = itemView.findViewById(R.id.imgProtectora);
-                this.name = itemView.findViewById(R.id.nameProtectora);
-                this.number= itemView.findViewById(R.id.numberProtectora);
+                this.img = itemView.findViewById(R.id.imgBlog);
+                this.name = itemView.findViewById(R.id.nameBlog);
+                this.number= itemView.findViewById(R.id.descriptionBlog);
                 this.direction = itemView.findViewById(R.id.directionProtectora);
                 this.cd = itemView.findViewById(R.id.cdProtectora);
                 this.website = itemView.findViewById(R.id.websiteProtectora);

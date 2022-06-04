@@ -36,7 +36,7 @@ private Button btn_Blog;
                 break;
 
             case R.id.btn_Blog:
-                Intent movimento3= new Intent(MainActivity.this, Blog.class);
+                Intent movimento3= new Intent(MainActivity.this, Blogs.class);
                 startActivity(movimento3);
                 break;
         }
