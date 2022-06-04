@@ -48,7 +48,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
                 " 987987987",
                 "calle ni idea",
                 "64789",
-                "http:sfsoefso/dfsf"));
+                "http:protectora"));
 
             adapter = new Adapter(listaProtectora);
 
