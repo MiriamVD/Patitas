@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".AnimalesPerdidos"
     android:orientation="horizontal">
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayout">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -30,11 +35,7 @@
             />
 
     </com.google.android.material.tabs.TabLayout>
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tabLayout">
+
 
     </androidx.viewpager2.widget.ViewPager2>
 </LinearLayout>

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 
 import com.google.android.material.tabs.TabLayout;
-
+import com.google.android.material.tabs.TabLayoutMediator;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +14,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 public class AnimalesPerdidos extends AppCompatActivity {
 
+    FragmentAdapter adapter;
     TabLayout tabLayout;
     ViewPager2 viewPager2;
-    FragmentAdapter adapter;
+    private String [] titles = new String[]{"Mapa", "Agregar"};
+
 
 
 
@@ -26,16 +28,13 @@ public class AnimalesPerdidos extends AppCompatActivity {
 
         tabLayout=findViewById(R.id.tabLayout);
         viewPager2=findViewById(R.id.viewPager);
+        getSupportActionBar().hide();;
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        //adapter=new FragmentAdapter(fragmentManager.getLifecycle());
+
+        adapter=new FragmentAdapter(this);
         viewPager2.setAdapter(adapter);
 
-        tabLayout.addTab(tabLayout.newTab().setText("MAPA"));
-        tabLayout.addTab(tabLayout.newTab().setText("AGREGAR"));
-
-
-
+    new TabLayoutMediator(tabLayout,viewPager2,((tab, position) ->tab.setText(titles[position]))).attach();
 
 
 

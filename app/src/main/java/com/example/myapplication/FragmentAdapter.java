@@ -11,21 +11,28 @@ import com.example.myapplication.fragments.AddFragment;
 import com.example.myapplication.fragments.MapFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {
+    private String [] titles = new String[]{"Mapa", "Agregar"};
 
-    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public FragmentAdapter(@NonNull FragmentActivity fragmentActivity) {
 
-        super(fragmentManager, lifecycle);
+        super(fragmentActivity);
 
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return null;
+        switch (position){
+            case 0:
+                return new MapFragment();
+            case 1:
+                return new AddFragment();
+        }
+        return new MapFragment();
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return titles.length;
     }
 }
