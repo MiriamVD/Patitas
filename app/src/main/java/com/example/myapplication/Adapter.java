@@ -76,11 +76,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
             super(itemView);
             //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-            this.name = itemView.findViewById(R.id.nameProtectora);
-            this.number= itemView.findViewById(R.id.numberProtectora);
-            this.direction = itemView.findViewById(R.id.directionProtectora);
-            this.cd = itemView.findViewById(R.id.cdProtectora);
-            this.website = itemView.findViewById(R.id.websiteProtectora);
+            for (int i= 0; i<=listaProtectora.size(); i++){
+                this.name = itemView.findViewById(R.id.nameProtectora);
+                this.number= itemView.findViewById(R.id.numberProtectora);
+                this.direction = itemView.findViewById(R.id.directionProtectora);
+                this.cd = itemView.findViewById(R.id.cdProtectora);
+                this.website = itemView.findViewById(R.id.websiteProtectora);
+            }
+
 
         }
 

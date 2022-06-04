@@ -49,9 +49,9 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
                 "calle ni idea",
                 "64789",
                 "http:sfsoefso/dfsf"));
-        for(int i=0;i<listaProtectora.size();i++){
+
             adapter = new Adapter(listaProtectora);
-        }
+
 
 
         recyclerView.setAdapter(adapter);
