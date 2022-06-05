@@ -17,11 +17,6 @@
     <string name="location">Ubicación</string>
 
 
-
-
-
-
-
     <string-array name="statusEntries">
         <item>Perdida</item>
         <item>Encontrada</item>

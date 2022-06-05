@@ -3,58 +3,47 @@ package com.example.myapplication;
 import android.os.Bundle;
 
 
+import com.example.myapplication.fragments.AddFragment;
+import com.example.myapplication.fragments.MapFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.ListFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 
 public class AnimalesPerdidos extends AppCompatActivity {
 
-    FragmentAdapter adapter;
+    ViewPagerAdapter madapter;
     TabLayout tabLayout;
     ViewPager2 viewPager2;
-    private String [] titles = new String[]{"Mapa", "Agregar"};
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_animales_perdidos);
 
-        tabLayout=findViewById(R.id.tabLayout);
-        viewPager2=findViewById(R.id.viewPager);
-        getSupportActionBar().hide();;
+        madapter=new ViewPagerAdapter(getSupportFragmentManager(),getLifecycle());
 
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager2 = findViewById(R.id.viewPager2);
+        viewPager2.setAdapter(madapter);
 
-        adapter=new FragmentAdapter(this);
-        viewPager2.setAdapter(adapter);
+        int[] icon = new int[]{
+                R.drawable.map_icon,
+                R.drawable.list2_icon,
+                R.drawable.pet_icon
 
-    new TabLayoutMediator(tabLayout,viewPager2,((tab, position) ->tab.setText(titles[position]))).attach();
-
-
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-        @Override
-        public void onTabSelected(TabLayout.Tab tab) {
-            viewPager2.setCurrentItem(tab.getPosition());
-        }
-
-        @Override
-        public void onTabUnselected(TabLayout.Tab tab) {
-
-        }
-
-        @Override
-        public void onTabReselected(TabLayout.Tab tab) {
-
-        }
-    });
+        };
+        new TabLayoutMediator(tabLayout,viewPager2,(tab, position) -> tab.setIcon(icon[position])).attach();
 
 
     }
+
+
 }
