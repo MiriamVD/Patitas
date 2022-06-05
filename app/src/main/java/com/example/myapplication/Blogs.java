@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +23,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
     private RecyclerView recyclerViewBlog;
     private AdapterBlog adapterBlog;
     private List<Blog> listaBlog;
+    private Drawable img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +64,10 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
             public void onClick(View view, int position) {
                 //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
                 Blog blogSeleccionado = listaBlog.get(position);
+
                 Intent intent = new Intent(Blogs.this, individualBlog.class);
                 intent.putExtra("id", blogSeleccionado.getId());
+               // intent.putExtra("img", blogSeleccionado.getImgBlog());
                 intent.putExtra("name", blogSeleccionado.getNameBlog());
                 intent.putExtra("description", blogSeleccionado.getDescriptionBlog());
                 startActivity(intent);
@@ -74,6 +78,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 Blog blogSeleccionado = listaBlog.get(position);
                 Intent intent = new Intent(Blogs.this, individualBlog.class);
                 intent.putExtra("id", blogSeleccionado.getId());
+                //intent.putExtra("img", fileName);
                 intent.putExtra("name", blogSeleccionado.getNameBlog());
                 intent.putExtra("description", blogSeleccionado.getDescriptionBlog());
                 startActivity(intent);
