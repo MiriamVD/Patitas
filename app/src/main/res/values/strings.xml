@@ -15,15 +15,17 @@
     <string name="images_header">Imágenes</string>
     <string name="header_lost_animals">Nuevo Anuncio</string>
     <string name="location">Ubicación</string>
-
+    <string name="btnPublicar">Publicar anuncio</string>
 
     <string-array name="statusEntries">
+        <item>Mascota</item>
         <item>Perdida</item>
         <item>Encontrada</item>
         <item>En adopción</item>
     </string-array>
 
     <string-array name="typeEntries">
+        <item>Tipo</item>
         <item>Perro</item>
         <item>Gato</item>
         <item>Conejo</item>
@@ -31,5 +33,6 @@
         <item>Otros</item>
 
     </string-array>
+
 
 </resources>
