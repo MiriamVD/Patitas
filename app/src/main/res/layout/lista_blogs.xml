@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:animateLayoutChanges="true"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
@@ -54,9 +54,11 @@
                 <TextView
                     android:id="@+id/descriptionBlog"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:text="TextView"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
 
             </LinearLayout>
 
