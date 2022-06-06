@@ -30,7 +30,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
 
         recyclerViewBlog=findViewById(R.id.recyclerView2);
 
-
+        setTitle("Blog");
         listaBlog = new ArrayList<>();
         listaBlog.add(new Blog( getResources().getDrawable(R.drawable.abandonado)," Cómo actuar ante una mascota abandonada o perdida",
                 " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",1));

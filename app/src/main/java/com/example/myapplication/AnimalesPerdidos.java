@@ -27,7 +27,7 @@ public class AnimalesPerdidos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animales_perdidos);
-
+        setTitle("Animales Perdidos");
         madapter=new ViewPagerAdapter(getSupportFragmentManager(),getLifecycle());
 
         tabLayout = findViewById(R.id.tabLayout);

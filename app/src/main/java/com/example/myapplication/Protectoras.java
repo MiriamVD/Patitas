@@ -28,7 +28,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
 
         recyclerView=findViewById(R.id.recyclerView);
 
-
+        setTitle("Protectoras");
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
 
