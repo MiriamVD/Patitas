@@ -1,18 +1,16 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.myapplication.models.Blog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -31,11 +29,8 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
         setContentView(R.layout.activity_blog);
 
         recyclerViewBlog=findViewById(R.id.recyclerView2);
-        RecyclerView.ItemDecoration itemDecoration = new
-                DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerViewBlog.addItemDecoration(itemDecoration);
-        //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        setTitle("Blog");
         listaBlog = new ArrayList<>();
         listaBlog.add(new Blog( getResources().getDrawable(R.drawable.abandonado)," Cómo actuar ante una mascota abandonada o perdida",
                 " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",1));

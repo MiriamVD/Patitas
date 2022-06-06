@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.myapplication.models.Blog;
+
 import java.util.List;
 
 public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDatos> {
