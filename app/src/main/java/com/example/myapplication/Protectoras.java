@@ -49,6 +49,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         listaProtectora.add(new Protectora(getResources().getDrawable(R.drawable.ascan),"ASCAN",
                 "987987987",
                 "calle ni idea",
+
                 "CP: 64789",
                 "https://ascan.com.es/"));
         listaProtectora.add(new Protectora(getResources().getDrawable(R.drawable.fapam),"F.A.P.A.M.",
@@ -71,6 +72,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
                 "calle ni idea",
                 "CP: 64789",
                 "http://www.spap.net/"));
+
 
             adapter = new Adapter(listaProtectora);
 
