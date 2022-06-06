@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
@@ -42,19 +41,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int i) {
 
 
-        //obtenemos la cerveza de nuestra lista gracias al indice i
+        //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
         Image img = protectora.getImgProtectora();
         String name = protectora.getNameProtectora();
-        String description=protectora.getDescriptionProtectora();
         String number =protectora.getNumberProtectora();
+        String direction = protectora.getDirectionProtectora();
+        String cd = protectora.getCdProtectora();
+        String website = protectora.getWebsiteProtectora();
         //ponemos a los textview los datos con settext
-       // holder.img.setImgage()
-        //holder.img.setImage();
-        holder.name.setText("hola");
-        holder.description.setText("lorem impsu dolor sit amet");
-        holder.number.setText("lorem");
+      // holder.img.setImage();
+        holder.name.setText(name);
+        holder.number.setText(number);
+        holder.direction.setText(direction);
+        holder.cd.setText(cd);
+        holder.website.setText(website);
 
     }
 
@@ -67,16 +69,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
         View img;
-        TextView name, description, number;
+        TextView name, number, direction, cd, website ;
 
         ViewHolderDatos(@NonNull View itemView) {
 
             super(itemView);
-            this.img= itemView.findViewById(R.id.imgProtectora);
+            //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-            this.name = itemView.findViewById(R.id.nameProtectora);
-            this.description= itemView.findViewById(R.id.descriptionProtectora);
-            this.number = itemView.findViewById(R.id.numberProtectora);
+            for (int i= 0; i<=listaProtectora.size(); i++){
+                this.name = itemView.findViewById(R.id.nameProtectora);
+                this.number= itemView.findViewById(R.id.numberProtectora);
+                this.direction = itemView.findViewById(R.id.directionProtectora);
+                this.cd = itemView.findViewById(R.id.cdProtectora);
+                this.website = itemView.findViewById(R.id.websiteProtectora);
+            }
+
 
         }
 
