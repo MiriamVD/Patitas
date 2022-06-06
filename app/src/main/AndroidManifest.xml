@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
+
     <!--Permisos de cámara -->
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -14,6 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
+        <activity
+            android:name=".individualBlog"
+            android:exported="false" />
+
 
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -30,11 +36,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
 
+
         <activity
             android:name=".AnimalesPerdidos"
             android:exported="false" />
         <activity
-            android:name=".Blog"
+
+            android:name=".ui.main.Animales_Perdidos"
+            android:exported="false" />
+        <activity
+            android:name=".Blogs"
+
             android:exported="false" />
         <activity
             android:name=".Protectoras"
