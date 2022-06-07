@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.example.myapplication.models.Protectora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,8 +19,9 @@ import java.util.List;
 public class Protectoras extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerView;
-    private Adapter adapter;
+    private AdapterProtectoras adapter;
     private List<Protectora> listaProtectora;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         setTitle("Protectoras");
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
+        searchView=findViewById(R.id.searchView);
+
+
 
         listaProtectora= new ArrayList<>();
         listaProtectora.add(new Protectora(getResources().getDrawable(R.drawable.zarpas_y_colmillos),"Zarpas y colmillos",
@@ -71,7 +76,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
                 "http://www.spap.net/"));
 
 
-            adapter = new Adapter(listaProtectora);
+            adapter = new AdapterProtectoras(listaProtectora);
 
 
 
@@ -82,7 +87,6 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
 
 
         }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -91,4 +95,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
                 startActivity(returned);
                 break;
     }}
+
+
+
 }

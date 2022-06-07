@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "336365860379",
+    "project_id": "patitas-63c6d",
+    "storage_bucket": "patitas-63c6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336365860379:android:f610c3d61fdf9dc8c32abe",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336365860379-pf9tfo4a3rt41vb0roniae8a11e01g11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOODbf6bqMRjWRXPQIitsPBTv1TeoDaIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336365860379-pf9tfo4a3rt41vb0roniae8a11e01g11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

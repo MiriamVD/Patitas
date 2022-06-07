@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.models.Protectora;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
+public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
     private List<Protectora> listaProtectora;
+    ArrayList<Protectora> listaOriginal;
 
 
     public void setListaProtectora(List<Protectora> listaProtectora){
@@ -24,9 +26,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
 
     //genero un constructor
 
-    public Adapter(List<Protectora> protectora) {
+    public AdapterProtectoras(List<Protectora> protectora) {
 
         this.listaProtectora = protectora;
+        listaOriginal=new ArrayList<>();
+        listaOriginal.addAll(listaProtectora);
     }
 
     @NonNull
@@ -61,6 +65,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderDatos> {
         holder.direction.setText(direction);
         holder.cd.setText(cd);
         holder.website.setText(website);
+
+    }
+
+    public void filter(String txtBuscar){
+        int length=txtBuscar.length();
+        if(length==0){
+            listaProtectora.clear();
+            listaProtectora.addAll(listaOriginal);
+
+        }
 
     }
 
