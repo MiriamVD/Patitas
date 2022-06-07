@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.myapplication.models.Blog;
+import com.example.myapplication.models.Protectora;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDatos> {
     private List<Blog> listaBlog;
+    ArrayList<Blog> listaOriginalBlog;
+    Context context;
 
 
     public void setListaBlog(List<Blog> listaBlog){
@@ -24,9 +29,11 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
 
     //genero un constructor
 
-    public AdapterBlog(List<Blog> blog) {
-
+    public AdapterBlog(Context context,List<Blog> blog) {
+        this.context=context;
         this.listaBlog = blog;
+        listaOriginalBlog=new ArrayList<>();
+        listaOriginalBlog.addAll(listaBlog);
     }
 
     @NonNull
@@ -42,18 +49,12 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
     //Encargado de actualizar los datos de un ViewHolder ya existente.
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int i) {
 
-
-        //obtenemos la protectora de nuestra lista gracias al indice i
         Blog blog =listaBlog.get(i);
         //obtenemos los datos de la lista
-        Drawable img = blog.getImgBlog();
-        String name = blog.getNameBlog();
-        String description =blog.getDescriptionBlog();
-
-        //ponemos a los textview los datos con settext
+        String name = blog.gettitle();
+        String description =blog.getdescription();
 
 
-        holder.img.setBackgroundDrawable(img);
         holder.name.setText(name);
         holder.description.setText(description);
 

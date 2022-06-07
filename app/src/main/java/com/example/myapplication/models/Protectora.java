@@ -6,104 +6,55 @@ import android.media.Image;
 import javax.sql.StatementEvent;
 
 public class Protectora {
-    private Drawable imgProtectora;
-    private String nameProtectora;
-    private String numberProtectora;
-    private String directionProtectora;
-    private String cdProtectora;
-    private String websiteProtectora;
+    //private Drawable imgProtectora;
+    private String name;
+    private String phone;
+    private String address;
+    private String zipcode;
+    private String website;
 
 
-    private long id;
-
-    public Protectora(Drawable imgProtectora, String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora, long id){
-        this.imgProtectora = imgProtectora;
-        this.nameProtectora = nameProtectora;
-        this.numberProtectora = numberProtectora;
-        this.directionProtectora = directionProtectora;
-        this.cdProtectora = cdProtectora;
-        this.websiteProtectora = websiteProtectora;
-
-        this.id = id;
+    public String getname() {
+        return name;
     }
 
-    public Protectora(Drawable imgProtectora, String nameProtectora, String numberProtectora, String directionProtectora, String cdProtectora, String websiteProtectora){
-        this.imgProtectora = imgProtectora;
-        this.nameProtectora = nameProtectora;
-        this.numberProtectora = numberProtectora;
+    public void setname(String name) {
+        this.name = name;
+    }
 
-        this.directionProtectora = directionProtectora;
-        this.cdProtectora = cdProtectora;
-        this.websiteProtectora = websiteProtectora;
+    public String getphone() {
+        return phone;
+    }
+
+    public void setphone(String phone) {
+        this.phone = phone;
     }
 
 
-    public Drawable getImgProtectora() {
-        return imgProtectora;
+    public String getaddress() {
+        return address;
     }
 
-    public void setImgProtectora(Drawable imgProtectora) {
-        this.imgProtectora = imgProtectora;
+    public void setaddress(String address) {
+        this.address = address;
     }
 
-    public String getNameProtectora() {
-        return nameProtectora;
+    public String getzipcode() {
+        return zipcode;
     }
 
-    public void setNameProtectora(String nameProtectora) {
-        this.nameProtectora = nameProtectora;
+    public void setzipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
-    public String getNumberProtectora() {
-        return numberProtectora;
+    public String getwebsite() {
+        return website;
     }
 
-    public void setNumberProtectora(String numberProtectora) {
-        this.numberProtectora = numberProtectora;
+    public void setwebsite(String website) {
+        this.website = website;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDirectionProtectora() {
-        return directionProtectora;
-    }
-
-    public void setDirectionProtectora(String directionProtectora) {
-        this.directionProtectora = directionProtectora;
-    }
-
-    public String getCdProtectora() {
-        return cdProtectora;
-    }
-
-    public void setCdProtectora(String cdProtectora) {
-        this.cdProtectora = cdProtectora;
-    }
-
-    public String getWebsiteProtectora() {
-        return websiteProtectora;
-    }
-
-    public void setWebsiteProtectora(String websiteProtectora) {
-        this.websiteProtectora = websiteProtectora;
-    }
-
-    @Override
-    public String toString(){
-        return  "Protectora{"+ "imgProtectora" +imgProtectora+ '\'' +
-                ", nameProtectora='" + nameProtectora + '\'' +
-                ", numberProtectora='" + numberProtectora + '\'' +
-                ", directionProtectora=" + directionProtectora + '\'' +
-                ", cdProtectora=" + cdProtectora +'\''+
-                ", websiteProtectora=" + websiteProtectora +'\''+
-                ", id=" + id +
-                '}';
-    }
 }
 
