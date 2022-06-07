@@ -20,14 +20,14 @@
     <string name="name2">Nombre Persona Contacto</string>
 
     <string-array name="statusEntries">
-
+        <item>Estado</item>
         <item>Perdida</item>
         <item>Encontrada</item>
         <item>En adopción</item>
     </string-array>
 
     <string-array name="typeEntries">
-
+        <item>Elige:</item>
         <item>Perro</item>
         <item>Gato</item>
         <item>Conejo</item>

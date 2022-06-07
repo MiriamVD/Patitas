@@ -81,14 +81,22 @@ public AddFragment(){
                 String addEmail=etEmail.getText().toString().trim();
                 String addDescription=etDescription.getText().toString().trim();
 
+            if(spinnerStatus.getSelectedItemPosition()==0 || spinnerType.getSelectedItemPosition()==0){
+                Toast.makeText(getActivity(),"Debes seleccionar las opciones", Toast.LENGTH_SHORT).show();
+            }else{
+                if(addPetName.isEmpty() && addPhone.isEmpty() && addContactPerson.isEmpty() &&addEmail.isEmpty()
+                        && addDescription.isEmpty() ){
+                    Toast.makeText(getActivity(),"Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+                }else{
+                    insert();
 
-               if(addPetName.isEmpty() && addPhone.isEmpty() && addContactPerson.isEmpty() &&addEmail.isEmpty()
-               && addDescription.isEmpty() ){
-                   Toast.makeText(getActivity(),"Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
-               }else{
-                   insert();
+                }
+            }
 
-               }
+
+
+
+
             }
 
         });
@@ -102,8 +110,8 @@ public AddFragment(){
     map.put("contactPerson", etContactPerson.getText().toString().trim());
     map.put("email", etEmail.getText().toString().trim());
     map.put("description", etDescription.getText().toString().trim());
-    //map.put("selectedStatus",spinnerStatus.getSelectedItem().toString().trim());
-   // map.put("selectedType",spinnerType.getSelectedItem().toString().trim());
+    map.put("selectedStatus",spinnerStatus.getSelectedItem().toString().trim());
+    map.put("selectedType",spinnerType.getSelectedItem().toString().trim());
 
     FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
