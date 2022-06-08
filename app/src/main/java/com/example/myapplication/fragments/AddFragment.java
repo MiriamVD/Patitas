@@ -1,39 +1,53 @@
 package com.example.myapplication.fragments;
 
+
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class AddFragment extends Fragment {
+    private static final int RESULT_OK = 200;
     private Button btnPublicar;
     private ImageView btnBuscar1, btnBuscar2, btnBuscar3, btnBuscar4, btnBuscar5;
     private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription;
     private Spinner spinnerStatus, spinnerType;
 
-
+    private StorageReference storageReference;
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Image");
+    private Uri image_url;
+    private ProgressBar progressBar;
+    //PackageManager pm = getActivity().getPackageManager();
 
 
 
@@ -69,6 +83,9 @@ public AddFragment(){
         spinnerStatus=view.findViewById(R.id.spinnerStatus);
         spinnerType=view.findViewById(R.id.spinnerType);
 
+
+
+
         btnPublicar.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -93,17 +110,69 @@ public AddFragment(){
                 }
             }
 
+            }
+
+        });
+        btnBuscar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
+               /** try {
+                    Intent intent = new Intent();
+                    intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(intent);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }*/
 
 
+
+               /**boolean pick =true;
+               if(pick==true){
+                   if(!checkCameraPermission()){
+                       requestCameraPermission();
+
+
+               }else
+                   PickImage();
+
+               }else{
+                   if(!checkStoragePermission()){
+                       requestStoragePermission();
+                   }else{
+                       PickImage();
+                   }
+                }*/
 
 
             }
+
+
+
 
         });
 
     }
 
-   private void insert(){
+private void openCamera(){
+    Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    if(intent.resolveActivity(getActivity().getPackageManager())!=null){
+        startActivityForResult(intent, 1);
+
+    }
+
+}
+/**public void onActivityResult(int requestCode, int resultCode, Intent data){
+    super.onActivityResult(requestCode,resultCode,data);
+    if(requestCode==1 && resultCode == RESULT_OK){
+        Bundle extras = data.getExtras();
+        Bitmap imgBitmap =(Bitmap) extras.get("data");
+    }
+
+}*/
+
+    private void insert(){
     Map<String, Object> map=new HashMap<>();
     map.put("petName", etPetName.getText().toString().trim());
     map.put("phone", etPhone.getText().toString().trim());
@@ -138,5 +207,42 @@ public AddFragment(){
     ;
 
     }
+    /**private boolean checkCameraPermission() {
+        boolean res1= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)==pm.PERMISSION_GRANTED;
+        boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;
+        return res1 && res2;
+    }
+    private boolean checkStoragePermission() {
+        boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;
+        return res2;
+
+    }
+    private void requestCameraPermission() {
+    requestPermissions(new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
+    }
+    private void requestStoragePermission() {
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
+
+
+    }
+    private void PickImage() {
+        CropImage.activity(image_url)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .start((Activity) getActivity().getApplicationContext());
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+        CropImage.ActivityResult result=CropImage.getActivityResult(data);
+        if(resultCode== RESULT_OK){
+            Uri resultUri = result.getUri();
+        }else if(resultCode ==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
+            Exception error = result.getError();
+        }
+    }
+    }*/
+
+
 
 }

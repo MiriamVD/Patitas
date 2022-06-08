@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true">
+
+
+
+    </uses-feature>
 
     <!--Permisos de cámara -->
     <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 
     <application
@@ -40,10 +50,7 @@
         <activity
             android:name=".AnimalesPerdidos"
             android:exported="false" />
-        <activity
 
-            android:name=".ui.main.Animales_Perdidos"
-            android:exported="false" />
         <activity
             android:name=".Blogs"
 
@@ -60,6 +67,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
