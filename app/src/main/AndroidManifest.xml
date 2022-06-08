@@ -22,7 +22,7 @@
             android:name=".IndividualPet"
             android:exported="false" />
         <activity
-            android:name=".individualBlog"
+            android:name=".IndividualBlog"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.

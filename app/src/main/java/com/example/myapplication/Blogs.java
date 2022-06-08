@@ -7,13 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.SearchView;
 
 import com.example.myapplication.models.Blog;
-import com.example.myapplication.models.Protectora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Blogs extends AppCompatActivity implements View.OnClickListener  {
     private FloatingActionButton btnFloat;
@@ -73,7 +69,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
                 Blog blogSeleccionado = listaBlog.get(position);
 
-                Intent intent = new Intent(Blogs.this, individualBlog.class);
+                Intent intent = new Intent(Blogs.this, IndividualBlog.class);
                // intent.putExtra("img", blogSeleccionado.getImgBlog());
                 intent.putExtra("title", blogSeleccionado.gettitle());
                 intent.putExtra("description", blogSeleccionado.getdescription());

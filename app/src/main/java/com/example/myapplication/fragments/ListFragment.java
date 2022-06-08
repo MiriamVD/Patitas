@@ -13,17 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import com.example.myapplication.AdapterPets;
 
-import com.example.myapplication.Blogs;
 import com.example.myapplication.IndividualPet;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.RecyclerTouchListener;
-import com.example.myapplication.individualBlog;
-import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Pet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ListFragment extends Fragment {

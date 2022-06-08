@@ -18,19 +18,15 @@ import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Coment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class individualBlog extends AppCompatActivity implements View.OnClickListener {
+public class IndividualBlog extends AppCompatActivity implements View.OnClickListener {
     private Drawable blogImg;
     private TextView blogTitle , title_coment, description_coment;
     private TextView blogDescription;
@@ -98,7 +94,7 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.btnAddComent:
                 if (comentTitle.getText().toString().isEmpty() || comentDescription.getText().toString().isEmpty()){
-                    Toast.makeText(individualBlog.this,"No puedes subir un comentario sin título o sin descripión",Toast.LENGTH_LONG).show();
+                    Toast.makeText(IndividualBlog.this,"No puedes subir un comentario sin título o sin descripión",Toast.LENGTH_LONG).show();
 
                     break;
                 }else {
