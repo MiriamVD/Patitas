@@ -3,16 +3,23 @@ package com.example.myapplication.models;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Blog implements Serializable {
     
     private String title;
     private String description;
+    private ArrayList<Coment> coment;
     private String title_coment;
     private String description_coment;
 
+    public ArrayList<Coment> getComent() {
+        return coment;
+    }
 
-
+    public void setComent(ArrayList<Coment> coment) {
+        this.coment = coment;
+    }
 
     public String gettitle() {
         return title;
