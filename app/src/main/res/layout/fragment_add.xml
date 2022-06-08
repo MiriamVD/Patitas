@@ -1,211 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp"
-    android:textDirection="firstStrongRtl"
-    tools:context=".fragments.AddFragment">
-
+    android:scrollbars="none"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/titleSpinner1"
-            android:textAlignment="gravity"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:elegantTextHeight="true"
-            android:text="@string/titleSpinner2"
-            android:textAlignment="gravity"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:textDirection="firstStrongRtl"
+        tools:context=".fragments.AddFragment">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinnerStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/statusEntries"
+                    android:minHeight="50dp"
+                    android:scrollbarSize="5dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/typeEntries"
+                    android:minHeight="50dp"
+                    android:scrollbarSize="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/spinnerStatus"
+            <TextView
+                android:id="@+id/tvLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:entries="@array/statusEntries"
-                android:minHeight="50dp"
-                android:scrollbarSize="5dp" />
+                android:minHeight="30dp"
+                android:hint="@string/location"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
-            <Spinner
-                android:id="@+id/spinnerType"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/btnLocation"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:entries="@array/typeEntries"
-                android:minHeight="50dp"
-                android:scrollbarSize="5dp" />
+                android:src="@drawable/loc_icon" />
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvLocation"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="30dp"
-            android:text="@string/location"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btnLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/loc_icon" />
+            <EditText
+                android:id="@+id/etPetName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="50dp"
+                android:hint="@string/name" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="phone"
+                android:minHeight="50dp"
+                android:hint="@string/phone" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etContactPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="50dp"
-            android:text="@string/name" />
-
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="phone"
-            android:minHeight="50dp"
-            android:text="@string/phone" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/etEmail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:minHeight="50dp"
-            android:text="@string/mail" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etDescription"
+            <EditText
+                android:id="@+id/etContactPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/name2" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:minHeight="50dp"
+                android:hint="@string/mail" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="90dp"
+                android:hint="@string/description"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                android:id="@+id/tvImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="20dp"
+                android:text="@string/images_header"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="120dp"
-            android:text="@string/description"
-            android:textAlignment="viewStart" />
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvImages"
+            <ImageButton
+                android:id="@+id/btnBuscar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/btn_buscar" />
+
+            <ImageButton
+                android:id="@+id/btnBuscar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/btn_buscar" />
+
+            <ImageButton
+                android:id="@+id/btnBuscar3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/btn_buscar" />
+
+            <ImageButton
+                android:id="@+id/btnBuscar4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/btn_buscar" />
+
+            <ImageButton
+                android:id="@+id/btnBuscar5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/btn_buscar" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnPublicar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="20dp"
-            android:text="@string/images_header"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:layout_gravity="end"
+            android:minHeight="60dip"
+            android:text="@string/btnPublicar" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btnBuscar1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/btn_buscar" />
 
-        <ImageButton
-            android:id="@+id/btnBuscar2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/btn_buscar" />
-
-        <ImageButton
-            android:id="@+id/btnBuscar3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/btn_buscar" />
-
-        <ImageButton
-            android:id="@+id/btnBuscar4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/btn_buscar" />
-
-        <ImageButton
-            android:id="@+id/btnBuscar5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/btn_buscar" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnPublicar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:minHeight="60dip"
-        android:text="@string/btnPublicar" />
-</LinearLayout>
+</ScrollView>

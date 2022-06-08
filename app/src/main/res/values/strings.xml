@@ -8,27 +8,26 @@
     <string name="tab_text_2">Agregar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="name">Nombre</string>
+    <string name="name">Nombre mascota</string>
     <string name="phone">Teléfono de contacto</string>
     <string name="description">Descripción</string>
     <string name="mail">E-mail</string>
     <string name="images_header">Imágenes</string>
-    <string name="header_lost_animals">Nuevo Anuncio</string>
     <string name="location">Ubicación</string>
     <string name="btnPublicar">Publicar anuncio</string>
     <string name="titleSpinner1">Mascota</string>
     <string name="titleSpinner2">Tipo</string>
-
+    <string name="name2">Nombre Persona Contacto</string>
 
     <string-array name="statusEntries">
-
+        <item>Estado</item>
         <item>Perdida</item>
         <item>Encontrada</item>
         <item>En adopción</item>
     </string-array>
 
     <string-array name="typeEntries">
-
+        <item>Elige:</item>
         <item>Perro</item>
         <item>Gato</item>
         <item>Conejo</item>
