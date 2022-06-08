@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onClick"
     tools:context=".Protectoras">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,12 +15,11 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:divider="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:divider="@android:color/black"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnFloatHome"
@@ -29,6 +29,7 @@
         android:layout_marginBottom="57dp"
         android:background="@color/primaryLightColor"
         android:clickable="true"
+        android:onClick="onClick"
         app:backgroundTint="@color/primaryLightColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

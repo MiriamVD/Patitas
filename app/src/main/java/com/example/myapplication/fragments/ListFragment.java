@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import com.example.myapplication.AdapterPets;
 
+import com.example.myapplication.IndividualPet;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerTouchListener;
 import com.example.myapplication.models.Pet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +44,7 @@ public class ListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -51,6 +53,13 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_list, container, false);
 
+        btnFloat =(FloatingActionButton) view.findViewById(R.id.btnFloatHome);
+        btnFloat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
 
         return view;
@@ -87,8 +96,42 @@ public class ListFragment extends Fragment {
             }
         });
 
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(),recyclerView, new RecyclerTouchListener.ClickListener() {
+
+
+            @Override
+            public void onClick(View view, int position) {
+                //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
+                Pet petSeleccionado = petsList.get(position);
+                Intent intent = new Intent(getContext(), IndividualPet.class);
+                // intent.putExtra("img", blogSeleccionado.getImgBlog());
+                intent.putExtra("name", petSeleccionado.getPetName());
+                intent.putExtra("status", petSeleccionado.getSelectedStatus());
+                intent.putExtra("type", petSeleccionado.getSelectedType());
+                intent.putExtra("phone", petSeleccionado.getPhone());
+                intent.putExtra("contact", petSeleccionado.getContactPerson());
+                intent.putExtra("email", petSeleccionado.getEmail());
+                intent.putExtra("description", petSeleccionado.getDescription());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
     }
 
 
+/*    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnFloatHome:
+                Intent returned = new Intent(getContext(), MainActivity.class);
+                startActivity(returned);
+                break;
 
+        }
+    }*/
 }
