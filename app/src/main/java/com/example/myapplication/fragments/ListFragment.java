@@ -17,8 +17,13 @@ import android.widget.SearchView;
 
 import com.example.myapplication.AdapterPets;
 
+import com.example.myapplication.Blogs;
+import com.example.myapplication.IndividualPet;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerTouchListener;
+import com.example.myapplication.individualBlog;
+import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Pet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ListFragment extends Fragment {
@@ -86,6 +92,31 @@ public class ListFragment extends Fragment {
 
             }
         });
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(),recyclerView, new RecyclerTouchListener.ClickListener() {
+
+
+            @Override
+            public void onClick(View view, int position) {
+                //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
+                Pet petSeleccionado = petsList.get(position);
+                Intent intent = new Intent(getContext(), IndividualPet.class);
+                // intent.putExtra("img", blogSeleccionado.getImgBlog());
+                intent.putExtra("name", petSeleccionado.getPetName());
+                intent.putExtra("status", petSeleccionado.getSelectedStatus());
+                intent.putExtra("type", petSeleccionado.getSelectedType());
+                intent.putExtra("phone", petSeleccionado.getPhone());
+                intent.putExtra("contact", petSeleccionado.getContactPerson());
+                intent.putExtra("email", petSeleccionado.getEmail());
+                intent.putExtra("description", petSeleccionado.getDescription());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
     }
 
