@@ -49,6 +49,7 @@ public class ListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -57,6 +58,13 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_list, container, false);
 
+        btnFloat =(FloatingActionButton) view.findViewById(R.id.btnFloatHome);
+        btnFloat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
 
         return view;
@@ -121,5 +129,14 @@ public class ListFragment extends Fragment {
     }
 
 
+/*    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnFloatHome:
+                Intent returned = new Intent(getContext(), MainActivity.class);
+                startActivity(returned);
+                break;
 
+        }
+    }*/
 }
