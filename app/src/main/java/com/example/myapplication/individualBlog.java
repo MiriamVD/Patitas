@@ -133,7 +133,7 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
         map.put("description_coment", comentDescription.getText().toString().trim());
 
 
-        FirebaseDatabase.getInstance().getReference().child("blogs").child("0").push().setValue(map)
+        FirebaseDatabase.getInstance().getReference().child("blogs").push().setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
