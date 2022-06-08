@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +16,23 @@ import android.widget.Toast;
 
 import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Coment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class individualBlog extends AppCompatActivity implements View.OnClickListener {
     private Drawable blogImg;
-    private TextView blogTitle;
+    private TextView blogTitle , title_coment, description_coment;
     private TextView blogDescription;
     private Blogs blogs;
     private Blog blog;
@@ -32,6 +42,8 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
     private EditText comentTitle, comentDescription;
     private AdapterComent adapterComent;
     private RecyclerView RecyclerViewComent;
+    private FirebaseDatabase db =FirebaseDatabase.getInstance();
+    private DatabaseReference root2 = db.getReference().child("blogs");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +73,23 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
         }
 
         //Drawable img= extras.getParcelable("img");
-        Object object=  extras.getSerializable("object");
+        String title= extras.getString("title");
+        String description = extras.getString("description");
+        String title_coment= extras.getString("title_coment");
+        String description_coment = extras.getString("description_coment");
 
-
+        comentList.add(new Coment(title_coment, description_coment));
         //blog = new Blog(title,description);
 
         blogTitle=findViewById(R.id.blogTitle);
         blogDescription=findViewById(R.id.blogDescription);
 
 
-        blogTitle.setText(String.valueOf(blog.gettitle()));
-        blogDescription.setText(String.valueOf(blog.getdescription()));
+
+
+        blogTitle.setText(title);
+        blogDescription.setText(description);
+
     }
 
 
@@ -84,13 +102,16 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
 
                     break;
                 }else {
-                    String title = comentTitle.getText().toString();
+
+                 insert();
+
+/*                    String title = comentTitle.getText().toString();
                     String description =comentDescription.getText().toString();
                     comentList.add(new Coment(title, description));
                     Collections.reverse(comentList);
                     refrescarLsita();
                     comentTitle.setText("");
-                    comentDescription.setText("");
+                    comentDescription.setText("");*/
                 }
                 break;
             case R.id.btnCancelComent:
@@ -104,4 +125,38 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
         adapterComent.setComentList(comentList);
         adapterComent.notifyDataSetChanged();
     }
+
+
+    private void insert(){
+        Map<String, Object> map=new HashMap<>();
+        map.put("title_coment", comentTitle.getText().toString().trim());
+        map.put("description_coment", comentDescription.getText().toString().trim());
+
+
+        FirebaseDatabase.getInstance().getReference().child("blogs").push().setValue(map)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid) {
+
+                        comentTitle.setText("");
+                        comentDescription.setText("");
+
+
+
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+
+
+                    }
+                })
+        ;
+
+    }
+
+
 }
