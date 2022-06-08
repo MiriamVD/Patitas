@@ -2,7 +2,9 @@ package com.example.myapplication.models;
 
 import android.graphics.drawable.Drawable;
 
-public class Blog {
+import java.io.Serializable;
+
+public class Blog implements Serializable {
     
     private String title;
     private String description;

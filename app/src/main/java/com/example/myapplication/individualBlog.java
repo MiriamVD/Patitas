@@ -36,14 +36,12 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        blog= new Blog();
         blogs = new Blogs();
         setContentView(R.layout.activity_individual_blog);
         recyclerViewComent=findViewById(R.id.recyclerView3);
 
         comentList = new ArrayList<>();
-        comentList.add(new Coment("hola", "me encanta el contenido"));
-        comentList.add(new Coment("hola", "me encanta el contenido"));
-        comentList.add(new Coment("hola", "me encanta el contenido"));
         adapterComent = new AdapterComent(comentList);
         comentTitle = findViewById(R.id.comentTitlex);
         comentDescription = findViewById(R.id.x);
@@ -63,14 +61,14 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
         }
 
         //Drawable img= extras.getParcelable("img");
-        String title= extras.getString("name");
-        String description = extras.getString("description");
+        Object object=  extras.getSerializable("object");
 
 
         //blog = new Blog(title,description);
 
         blogTitle=findViewById(R.id.blogTitle);
         blogDescription=findViewById(R.id.blogDescription);
+
 
         blogTitle.setText(String.valueOf(blog.gettitle()));
         blogDescription.setText(String.valueOf(blog.getdescription()));

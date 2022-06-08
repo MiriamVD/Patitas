@@ -75,19 +75,13 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
 
                 Intent intent = new Intent(Blogs.this, individualBlog.class);
                // intent.putExtra("img", blogSeleccionado.getImgBlog());
-                intent.putExtra("title", blogSeleccionado.gettitle());
-                intent.putExtra("description", blogSeleccionado.getdescription());
+                intent.putExtra("object", blogSeleccionado);
                 startActivity(intent);
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Blog blogSeleccionado = listaBlog.get(position);
-                Intent intent = new Intent(Blogs.this, individualBlog.class);
-                //intent.putExtra("img", fileName);
-                intent.putExtra("name", blogSeleccionado.gettitle());
-                intent.putExtra("description", blogSeleccionado.getdescription());
-                startActivity(intent);
+
             }
         }));
     }
