@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,9 +10,16 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.example.myapplication.models.Blog;
+import com.example.myapplication.models.Protectora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +28,9 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerViewBlog;
     private AdapterBlog adapterBlog;
-    private List<Blog> listaBlog;
-    private Drawable img;
+    private ArrayList<Blog> listaBlog;
+    private FirebaseDatabase db =FirebaseDatabase.getInstance();
+    private DatabaseReference root2 = db.getReference().child("blogs");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +41,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
 
         setTitle("Blog");
         listaBlog = new ArrayList<>();
-        listaBlog.add(new Blog( getResources().getDrawable(R.drawable.abandonado)," Cómo actuar ante una mascota abandonada o perdida",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",1));
-        listaBlog.add(new Blog( getResources().getDrawable(R.drawable.accesorios)," ¡Accesorios indispensables para tu mascota!",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",2));
-        listaBlog.add(new Blog( getResources().getDrawable(R.drawable.camas)," Las mejores camas para tus peludos",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",3));
-        listaBlog.add(new Blog( getResources().getDrawable(R.drawable.piensos)," ¿Cuáles son los mejores piensos del mercado?",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",4));
-        listaBlog.add(new Blog( getResources().getDrawable(R.drawable.erizo)," Cómo cuidar de un erizo",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",5));
-        adapterBlog = new AdapterBlog(listaBlog);
+        adapterBlog = new AdapterBlog(this,listaBlog);
 
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
@@ -51,8 +50,22 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
         recyclerViewBlog.setLayoutManager(mLayoutManager);
         recyclerViewBlog.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerViewBlog.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),recyclerViewBlog, new RecyclerTouchListener.ClickListener() {
+        root2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds: snapshot.getChildren() ) {
+                    Blog blog =ds.getValue(Blog.class);
+                    listaBlog.add(blog);
+                }
+                adapterBlog.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        recyclerViewBlog.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),recyclerViewBlog, new RecyclerTouchListener.ClickListener() {
 
 
             @Override
@@ -61,10 +74,9 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 Blog blogSeleccionado = listaBlog.get(position);
 
                 Intent intent = new Intent(Blogs.this, individualBlog.class);
-                intent.putExtra("id", blogSeleccionado.getId());
                // intent.putExtra("img", blogSeleccionado.getImgBlog());
-                intent.putExtra("name", blogSeleccionado.getNameBlog());
-                intent.putExtra("description", blogSeleccionado.getDescriptionBlog());
+                intent.putExtra("title", blogSeleccionado.gettitle());
+                intent.putExtra("description", blogSeleccionado.getdescription());
                 startActivity(intent);
             }
 
@@ -72,10 +84,9 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
             public void onLongClick(View view, int position) {
                 Blog blogSeleccionado = listaBlog.get(position);
                 Intent intent = new Intent(Blogs.this, individualBlog.class);
-                intent.putExtra("id", blogSeleccionado.getId());
                 //intent.putExtra("img", fileName);
-                intent.putExtra("name", blogSeleccionado.getNameBlog());
-                intent.putExtra("description", blogSeleccionado.getDescriptionBlog());
+                intent.putExtra("name", blogSeleccionado.gettitle());
+                intent.putExtra("description", blogSeleccionado.getdescription());
                 startActivity(intent);
             }
         }));

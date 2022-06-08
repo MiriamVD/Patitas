@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
     private List<Protectora> listaProtectora;
     ArrayList<Protectora> listaOriginal;
+    Context context;
 
 
     public void setListaProtectora(List<Protectora> listaProtectora){
@@ -26,8 +28,8 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
 
     //genero un constructor
 
-    public AdapterProtectoras(List<Protectora> protectora) {
-
+    public AdapterProtectoras( Context context, ArrayList<Protectora> protectora) {
+        this.context =context;
         this.listaProtectora = protectora;
         listaOriginal=new ArrayList<>();
         listaOriginal.addAll(listaProtectora);
@@ -50,20 +52,20 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
-        Drawable img = protectora.getImgProtectora();
-        String name = protectora.getNameProtectora();
-        String number =protectora.getNumberProtectora();
-        String direction = protectora.getDirectionProtectora();
-        String cd = protectora.getCdProtectora();
-        String website = protectora.getWebsiteProtectora();
+        //Drawable img = protectora.getImgProtectora();
+        String name = protectora.getname();
+        String phone =protectora.getphone();
+        String address = protectora.getaddress();
+        String zipcode = protectora.getzipcode();
+        String website = protectora.getwebsite();
         //ponemos a los textview los datos con settext
 
 
-        holder.img.setBackgroundDrawable(img);
+      //  holder.img.setBackgroundDrawable(img);
         holder.name.setText(name);
-        holder.number.setText(number);
-        holder.direction.setText(direction);
-        holder.cd.setText(cd);
+        holder.number.setText(phone);
+        holder.direction.setText(address);
+        holder.cd.setText(zipcode);
         holder.website.setText(website);
 
     }
@@ -86,7 +88,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
-        View img;
+       // View img;
         TextView name, number, direction, cd, website ;
 
         ViewHolderDatos(@NonNull View itemView) {
@@ -94,7 +96,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
             super(itemView);
             //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-                this.img = itemView.findViewById(R.id.imgBlog);
+               // this.img = itemView.findViewById(R.id.imgBlog);
                 this.name = itemView.findViewById(R.id.nameBlog);
                 this.number= itemView.findViewById(R.id.descriptionBlog);
                 this.direction = itemView.findViewById(R.id.directionProtectora);

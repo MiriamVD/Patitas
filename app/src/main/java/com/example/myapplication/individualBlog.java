@@ -65,15 +65,15 @@ public class individualBlog extends AppCompatActivity implements View.OnClickLis
         //Drawable img= extras.getParcelable("img");
         String title= extras.getString("name");
         String description = extras.getString("description");
-        long id = extras.getLong("id");
 
-        blog = new Blog(blogImg,title,description,id);
+
+        //blog = new Blog(title,description);
 
         blogTitle=findViewById(R.id.blogTitle);
         blogDescription=findViewById(R.id.blogDescription);
 
-        blogTitle.setText(String.valueOf(blog.getNameBlog()));
-        blogDescription.setText(String.valueOf(blog.getDescriptionBlog()));
+        blogTitle.setText(String.valueOf(blog.gettitle()));
+        blogDescription.setText(String.valueOf(blog.getdescription()));
     }
 
 
