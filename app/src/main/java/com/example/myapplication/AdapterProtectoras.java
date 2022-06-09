@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
-    private List<Protectora> listaProtectora;
+    private ArrayList<Protectora> listaProtectora;
 
     private Context context;
-    private ImageView imgProtectora;
 
 
-    public void setListaProtectora(List<Protectora> listaProtectora){
+
+    public void setListaProtectora(ArrayList<Protectora> listaProtectora){
         this.listaProtectora=listaProtectora;
     }
 
@@ -52,14 +50,14 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int i) {
 
         Glide.with(context)
-                .load(listaProtectora.get(i).getImageUrl())
+                .load(listaProtectora.get(i).getImage())
                 .into(holder.imgProtectora);
 
         //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
 
-        String imageUrl = protectora.getImageUrl();
+        String imageUrl = protectora.getImage();
         String name = protectora.getname();
         String phone =protectora.getphone();
         String address = protectora.getaddress();

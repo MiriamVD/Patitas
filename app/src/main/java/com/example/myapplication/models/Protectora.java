@@ -7,19 +7,20 @@ import android.widget.ImageView;
 import javax.sql.StatementEvent;
 
 public class Protectora {
-    private String imageUrl;
+    private String image;
     private String name;
     private String phone;
     private String address;
     private String zipcode;
 
-    public Protectora(String imageUrl, String name, String phone, String address, String zipcode, String website) {
-        this.imageUrl = imageUrl;
-        this.name = name;
-        this.phone = phone;
+    public Protectora(String address,String name,String image,  String phone, String website, String zipcode) {
         this.address = address;
-        this.zipcode = zipcode;
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
         this.website = website;
+        this.zipcode = zipcode;
+
     }
 
     private String website;
@@ -29,12 +30,12 @@ public Protectora(){
 
 }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getname() {
