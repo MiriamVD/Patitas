@@ -21,7 +21,7 @@ import java.util.List;
 
 public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
     private List<Protectora> listaProtectora;
-    private ArrayList<Protectora> listaOriginal;
+
     private Context context;
     private ImageView imgProtectora;
 
@@ -35,9 +35,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     public AdapterProtectoras( Context context, ArrayList<Protectora> protectora) {
         this.context =context;
         this.listaProtectora = protectora;
-        listaOriginal=new ArrayList<>();
 
-        listaOriginal.addAll(listaProtectora);
     }
 
     @NonNull
@@ -60,6 +58,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
+
         String imageUrl = protectora.getImageUrl();
         String name = protectora.getname();
         String phone =protectora.getphone();
@@ -68,7 +67,6 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         String website = protectora.getwebsite();
         //ponemos a los textview los datos con settext
 
-       // holder.imgProtectora.setImageBitmap(imageUrl);
         holder.name.setText(name);
         holder.number.setText(phone);
         holder.direction.setText(address);
@@ -77,15 +75,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
 
     }
 
-    public void filter(String txtBuscar){
-        int length=txtBuscar.length();
-        if(length==0){
-            listaProtectora.clear();
-            listaProtectora.addAll(listaOriginal);
 
-        }
-
-    }
 
     @Override
     //obtenemos la cantidad de items
@@ -101,9 +91,9 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         ViewHolderDatos(@NonNull View itemView) {
 
             super(itemView);
-            //this.img= itemView.findViewById(R.id.imgProtectora);
+
             //Le pasamos la referencia del xml
-                this.imgProtectora = itemView.findViewById(R.id.imgBlog);
+                this.imgProtectora = itemView.findViewById(R.id.imgProtectora);
                 this.name = itemView.findViewById(R.id.nameBlog);
                 this.number= itemView.findViewById(R.id.descriptionBlog);
                 this.direction = itemView.findViewById(R.id.directionProtectora);

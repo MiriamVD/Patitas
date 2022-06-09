@@ -28,6 +28,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.KeyStore.ProtectionParameter;
 import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,6 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference reference = db.getReference().child("protectoras");
     private ImageView imgProtectora;
-    //private StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
 
 
@@ -57,18 +57,13 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         btnFloat.setOnClickListener((View.OnClickListener)this);
 
 
-
-
-
         /**String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
         ImageView ivBasicImage = (ImageView) findViewById(R.id.imgBlog);
         Picasso.with(Protectoras.this).load(imageUri).into(ivBasicImage);*/
 
         listaProtectora= new ArrayList<>();
 
-            adapter = new AdapterProtectoras(this, listaProtectora);
-
-
+        adapter = new AdapterProtectoras(this, listaProtectora);
 
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager mLayoutManager= new LinearLayoutManager(getApplicationContext());
@@ -81,6 +76,8 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot ds: snapshot.getChildren() ) {
+
+
                     Protectora protectora =ds.getValue(Protectora.class);
                     listaProtectora.add(protectora);
                 }
@@ -90,6 +87,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
 
             }
         });
