@@ -2,15 +2,18 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.models.Protectora;
 
 import java.util.ArrayList;
@@ -18,8 +21,9 @@ import java.util.List;
 
 public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
     private List<Protectora> listaProtectora;
-    ArrayList<Protectora> listaOriginal;
-    Context context;
+    private ArrayList<Protectora> listaOriginal;
+    private Context context;
+    private ImageView imgProtectora;
 
 
     public void setListaProtectora(List<Protectora> listaProtectora){
@@ -32,6 +36,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         this.context =context;
         this.listaProtectora = protectora;
         listaOriginal=new ArrayList<>();
+
         listaOriginal.addAll(listaProtectora);
     }
 
@@ -48,11 +53,14 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     //Encargado de actualizar los datos de un ViewHolder ya existente.
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int i) {
 
+        Glide.with(context)
+                .load(listaProtectora.get(i).getImageUrl())
+                .into(holder.imgProtectora);
 
         //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
-        //Drawable img = protectora.getImgProtectora();
+        String imageUrl = protectora.getImageUrl();
         String name = protectora.getname();
         String phone =protectora.getphone();
         String address = protectora.getaddress();
@@ -60,8 +68,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         String website = protectora.getwebsite();
         //ponemos a los textview los datos con settext
 
-
-      //  holder.img.setBackgroundDrawable(img);
+       // holder.imgProtectora.setImageBitmap(imageUrl);
         holder.name.setText(name);
         holder.number.setText(phone);
         holder.direction.setText(address);
@@ -88,7 +95,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
-       // View img;
+        ImageView imgProtectora;
         TextView name, number, direction, cd, website ;
 
         ViewHolderDatos(@NonNull View itemView) {
@@ -96,7 +103,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
             super(itemView);
             //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-               // this.img = itemView.findViewById(R.id.imgBlog);
+                this.imgProtectora = itemView.findViewById(R.id.imgBlog);
                 this.name = itemView.findViewById(R.id.nameBlog);
                 this.number= itemView.findViewById(R.id.descriptionBlog);
                 this.direction = itemView.findViewById(R.id.directionProtectora);

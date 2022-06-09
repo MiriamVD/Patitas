@@ -2,17 +2,40 @@ package com.example.myapplication.models;
 
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.widget.ImageView;
 
 import javax.sql.StatementEvent;
 
 public class Protectora {
-    //private Drawable imgProtectora;
+    private String imageUrl;
     private String name;
     private String phone;
     private String address;
     private String zipcode;
+
+    public Protectora(String imageUrl, String name, String phone, String address, String zipcode, String website) {
+        this.imageUrl = imageUrl;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.website = website;
+    }
+
     private String website;
 
+
+public Protectora(){
+
+}
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getname() {
         return name;
