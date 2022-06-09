@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,7 +100,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
                     break;
                 }else {
 
-        //         insert();
+                insert();
 
 /*                    String title = comentTitle.getText().toString();
                     String description =comentDescription.getText().toString();
@@ -127,9 +128,10 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         Map<String, Object> map=new HashMap<>();
         map.put("title_coment", comentTitle.getText().toString().trim());
         map.put("description_coment", comentDescription.getText().toString().trim());
+        String key = FirebaseDatabase.getInstance().getReference().child("blogs").push().child("coment").getKey();
+        Log.d(key,"key");
 
-
-        FirebaseDatabase.getInstance().getReference().child("blogs").child("coment").push().setValue(map)
+        FirebaseDatabase.getInstance().getReference().child("blogs").child(key).child("coment").push().setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
