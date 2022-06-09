@@ -3,22 +3,21 @@ package com.example.myapplication.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Blog  {
     private String image;
     private String title;
     private String description;
-    private ArrayList<Coment> coment;
-    private String title_coment;
-    private String description_coment;
+   // private Map<String, Object> coment;
 
-    public Blog(String image, String title, String description, ArrayList<Coment> coment, String title_coment, String description_coment) {
+
+    public Blog(String image, String title, String description, Map<String, Object> coment) {
         this.image = image;
         this.title = title;
         this.description = description;
-        this.coment = coment;
-        this.title_coment = title_coment;
-        this.description_coment = description_coment;
+       // this.coment = coment;
+
     }
 
     public Blog(){
@@ -32,13 +31,13 @@ public class Blog  {
         this.image = image;
     }
 
-    public ArrayList<Coment> getComent() {
+   /* public Map<String, Object> getComent() {
         return coment;
     }
 
-    public void setComent(ArrayList<Coment> coment) {
+    public void setComent(Map<String, Object> coment) {
         this.coment = coment;
-    }
+    }*/
 
     public String gettitle() {
         return title;
@@ -56,21 +55,6 @@ public class Blog  {
         this.description = description;
     }
 
-    public String getTitle_coment() {
-        return title_coment;
-    }
-
-    public void setTitle_coment(String title_coment) {
-        this.title_coment = title_coment;
-    }
-
-    public String getDescription_coment() {
-        return description_coment;
-    }
-
-    public void setDescription_coment(String description_coment) {
-        this.description_coment = description_coment;
-    }
 
 
 }

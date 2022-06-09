@@ -69,15 +69,14 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
             finish();
             return;
         }
-        Glide.with(this).load(extras.getString("image"))
-                .into(blogImg);
+   /*     Glide.with(this).load(extras.getString("image"))
+                .into(blogImg);*/
 
         String title= extras.getString("title");
         String description = extras.getString("description");
-        String title_coment= extras.getString("title_coment");
-        String description_coment = extras.getString("description_coment");
 
-        comentList.add(new Coment(title_coment, description_coment));
+
+      //  comentList.add(new Coment(title_coment, description_coment));
         //blog = new Blog(title,description);
         blogImg=findViewById(R.id.blogImg);
         blogTitle=findViewById(R.id.blogTitle);
@@ -100,7 +99,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
                     break;
                 }else {
 
-                 insert();
+        //         insert();
 
 /*                    String title = comentTitle.getText().toString();
                     String description =comentDescription.getText().toString();
@@ -130,7 +129,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         map.put("description_coment", comentDescription.getText().toString().trim());
 
 
-        FirebaseDatabase.getInstance().getReference().child("blogs").push().setValue(map)
+        FirebaseDatabase.getInstance().getReference().child("blogs").child("coment").push().setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {

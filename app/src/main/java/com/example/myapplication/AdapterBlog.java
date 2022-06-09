@@ -21,7 +21,7 @@ import java.util.List;
 
 public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDatos> {
     private List<Blog> listaBlog;
-    ArrayList<Blog> listaOriginalBlog;
+
     Context context;
 
 
@@ -34,8 +34,7 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
     public AdapterBlog(Context context,List<Blog> blog) {
         this.context=context;
         this.listaBlog = blog;
-        listaOriginalBlog=new ArrayList<>();
-        listaOriginalBlog.addAll(listaBlog);
+
     }
 
     @NonNull
