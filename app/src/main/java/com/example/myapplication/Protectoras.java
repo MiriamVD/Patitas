@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.models.Protectora;
@@ -87,7 +88,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(Protectoras.this,"Error:" + error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Coment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 public class IndividualBlog extends AppCompatActivity implements View.OnClickListener {
-    private Drawable blogImg;
+    private ImageView blogImg;
     private TextView blogTitle , title_coment, description_coment;
     private TextView blogDescription;
     private Blogs blogs;
@@ -67,8 +69,9 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
             finish();
             return;
         }
+        Glide.with(this).load(extras.getString("image"))
+                .into(blogImg);
 
-        //Drawable img= extras.getParcelable("img");
         String title= extras.getString("title");
         String description = extras.getString("description");
         String title_coment= extras.getString("title_coment");
@@ -76,11 +79,9 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
         comentList.add(new Coment(title_coment, description_coment));
         //blog = new Blog(title,description);
-
+        blogImg=findViewById(R.id.blogImg);
         blogTitle=findViewById(R.id.blogTitle);
         blogDescription=findViewById(R.id.blogDescription);
-
-
 
 
         blogTitle.setText(title);
@@ -136,9 +137,6 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
                         comentTitle.setText("");
                         comentDescription.setText("");
-
-
-
 
 
                     }

@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.myapplication.models.Blog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +29,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
     private ArrayList<Blog> listaBlog;
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference root2 = db.getReference().child("blogs");
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Blogs.this,"Error:" + error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -70,12 +74,12 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 Blog blogSeleccionado = listaBlog.get(position);
 
                 Intent intent = new Intent(Blogs.this, IndividualBlog.class);
-               // intent.putExtra("img", blogSeleccionado.getImgBlog());
+                intent.putExtra("image", listaBlog.get(position).getImage());
                 intent.putExtra("title", blogSeleccionado.gettitle());
                 intent.putExtra("description", blogSeleccionado.getdescription());
                 intent.putExtra("title_coment", blogSeleccionado.getTitle_coment());
                 intent.putExtra("description_coment", blogSeleccionado.getDescription_coment());
-                startActivity(intent);
+                context.startActivity(intent);
             }
 
             @Override

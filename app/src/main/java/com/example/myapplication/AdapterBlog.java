@@ -5,12 +5,14 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Protectora;
 
@@ -48,14 +50,16 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
     @Override
     //Encargado de actualizar los datos de un ViewHolder ya existente.
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int i) {
-
+        Glide.with(context)
+                .load(listaBlog.get(i).getImage())
+                .into(holder.imgBlog);
         Blog blog =listaBlog.get(i);
         //obtenemos los datos de la lista
-        String name = blog.gettitle();
+        String title = blog.gettitle();
         String description =blog.getdescription();
 
 
-        holder.name.setText(name);
+        holder.title.setText(title);
         holder.description.setText(description);
 
 
@@ -69,16 +73,16 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
     }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
-        View img;
-        TextView name, description ;
+        ImageView imgBlog;
+        TextView title, description ;
 
         ViewHolderDatos(@NonNull View itemView) {
 
             super(itemView);
             //this.img= itemView.findViewById(R.id.imgProtectora);
             //Le pasamos la referencia del xml
-            this.img = itemView.findViewById(R.id.imgBlog);
-            this.name = itemView.findViewById(R.id.nameBlog);
+            this.imgBlog = itemView.findViewById(R.id.imgBlog);
+            this.title = itemView.findViewById(R.id.nameBlog);
             this.description= itemView.findViewById(R.id.descriptionBlog);
 
 
