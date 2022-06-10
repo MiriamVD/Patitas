@@ -32,13 +32,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements SearchView.OnQueryTextListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerView;
     private AdapterPets adapter;
     private ArrayList<Pet> petsList;
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference root = db.getReference().child("pets");
+    private SearchView search;
 
 
 
@@ -55,7 +56,7 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_list, container, false);
 
-
+        search = view.findViewById(R.id.search);
         btnFloat =(FloatingActionButton) view.findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +124,19 @@ public class ListFragment extends Fragment {
 
             }
         }));
+        search.setOnQueryTextListener(this);
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapter.filtrado(s);
+        return false;
     }
 
 
