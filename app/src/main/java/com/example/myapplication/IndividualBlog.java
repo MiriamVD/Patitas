@@ -125,13 +125,30 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
 
     private void insert(){
+       /*
         Map<String, Object> map=new HashMap<>();
-        map.put("title_coment", comentTitle.getText().toString().trim());
-        map.put("description_coment", comentDescription.getText().toString().trim());
-        String key = FirebaseDatabase.getInstance().getReference().child("blogs").push().child("coment").getKey();
-        Log.d(key,"key");
+        map.put("title" , blogTitle.getText().toString().trim());
+        map.put("description" , blogDescription.getText().toString().trim());/
+       // String key = FirebaseDatabase.getInstance().getReference().child("blogs").push().getKey();
+/
 
-        FirebaseDatabase.getInstance().getReference().child("blogs").child(key).child("coment").push().setValue(map)
+    String key = FirebaseDatabase.getInstance().getReference().child("blogs").getKey();
+        System.out.println(key);
+
+        FirebaseDatabase.getInstance().getReference().child("coment").child(key).getParent().push().setValue(map)
+
+   String key= root2.push().getKey();
+        Log.d(key,"key");
+        root2.child(key).child("coment").updateChildren(coment)*/
+
+        String key= root2.push().getKey();
+        Log.d(key,"key");
+        Map<String, Object> coment=new HashMap<>();
+        coment.put("/title_coment/", comentTitle.getText().toString().trim());
+        coment.put("/description_coment/", comentDescription.getText().toString().trim());
+
+        root2.child(key).setValue(coment)
+
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {

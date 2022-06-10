@@ -46,17 +46,18 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_protectoras);
 
         recyclerView=findViewById(R.id.recyclerView);
-
+        searchView=findViewById(R.id.search);
         setTitle("Protectoras");
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
-
+        searchView();
 
         /**String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
         ImageView ivBasicImage = (ImageView) findViewById(R.id.imgBlog);
@@ -94,6 +95,29 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         });
 
         }
+
+    private void searchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                processSearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                processSearch(newText);
+                return false;
+            }
+        });
+    }
+
+    public void processSearch(String newText) {
+
+
+
+
+    }
 
 
     @Override

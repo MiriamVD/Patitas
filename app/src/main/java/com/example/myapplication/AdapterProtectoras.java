@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,8 +19,9 @@ import com.example.myapplication.models.Protectora;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
+public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> implements Filterable {
     private ArrayList<Protectora> listaProtectora;
+    private List<Protectora> exampleListFull;
 
     private Context context;
 
@@ -72,7 +75,10 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         holder.website.setText(website);
 
     }
-
+/**@Override
+public Filter getFilter(){
+        return exampleFilter;
+}*/
 
 
     @Override
@@ -80,6 +86,11 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     public int getItemCount() {
 
         return listaProtectora.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
