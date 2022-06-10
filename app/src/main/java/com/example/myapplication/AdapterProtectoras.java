@@ -106,7 +106,8 @@ public Filter getFilter(){
                 }
             }*/
         }
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
+
     }
 
 

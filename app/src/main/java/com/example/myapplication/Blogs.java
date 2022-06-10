@@ -44,7 +44,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener, Se
         listaBlog = new ArrayList<>();
         adapterBlog = new AdapterBlog(this,listaBlog);
 
-        searchView.findViewById(R.id.searchBlog);
+        searchView=findViewById(R.id.searchBlog);
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
         recyclerViewBlog.setAdapter(adapterBlog);
@@ -89,6 +89,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener, Se
 
             }
         }));
+        searchView.setOnQueryTextListener(this);
     }
 
     @Override

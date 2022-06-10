@@ -118,6 +118,6 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onQueryTextChange(String s) {
         adapter.filtrado(s);
-        return false;
+        return true;
     }
 }
