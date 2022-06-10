@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
-import com.example.myapplication.AdapterPets;
+import com.example.myapplication.adapters.AdapterPets;
 
 import com.example.myapplication.IndividualPet;
 import com.example.myapplication.MainActivity;
@@ -40,6 +41,7 @@ public class ListFragment extends Fragment {
     private DatabaseReference root = db.getReference().child("pets");
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_list, container, false);
+
 
         btnFloat =(FloatingActionButton) view.findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener(new View.OnClickListener() {

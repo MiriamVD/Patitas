@@ -10,11 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.example.myapplication.adapters.AdapterProtectoras;
 import com.example.myapplication.models.Protectora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -22,17 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyStore.ProtectionParameter;
-import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Protectoras extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
     private FloatingActionButton btnFloat;

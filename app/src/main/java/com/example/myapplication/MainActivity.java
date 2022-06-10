@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.adapters.AnimalesPerdidos;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 private Button btn_Protectoras;

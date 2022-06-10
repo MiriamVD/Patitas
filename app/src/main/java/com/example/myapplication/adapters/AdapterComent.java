@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.adapters;
 
 
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import com.example.myapplication.R;
 import com.example.myapplication.models.Coment;
 
 public class AdapterComent extends RecyclerView.Adapter<AdapterComent.ViewHolderDatos> {

@@ -40,7 +40,7 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".AnimalesPerdidos"
+            android:name=".adapters.AnimalesPerdidos"
             android:exported="false" />
         <activity
             android:name=".Blogs"

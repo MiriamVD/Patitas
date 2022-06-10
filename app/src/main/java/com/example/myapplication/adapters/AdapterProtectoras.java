@@ -1,7 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.adapters;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.R;
 import com.example.myapplication.models.Protectora;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> implements Filterable {
+public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
     private ArrayList<Protectora> listaProtectora;
     private List<Protectora> listaOriginal;
 
@@ -81,10 +80,6 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         holder.website.setText(website);
 
     }
-/**@Override
-public Filter getFilter(){
-        return exampleFilter;
-}*/
 
     public void filtrado(String SearchView){
         int longitud = SearchView.length();
@@ -98,13 +93,13 @@ public Filter getFilter(){
                 listaProtectora.addAll(collecion);
 
             }
-   /*         else {
+            else {
                 for (Protectora prot: listaOriginal) {
                     if(prot.getname().toLowerCase().contains(SearchView.toLowerCase(Locale.ROOT))){
                         listaProtectora.add(prot);
                     }
                 }
-            }*/
+            }
         }
         this.notifyDataSetChanged();
 
@@ -118,10 +113,6 @@ public Filter getFilter(){
         return listaProtectora.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return null;
-    }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
         ImageView imgProtectora;

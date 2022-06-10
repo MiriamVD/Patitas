@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.myapplication.adapters.AdapterBlog;
 import com.example.myapplication.models.Blog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
