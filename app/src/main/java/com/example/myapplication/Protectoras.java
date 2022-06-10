@@ -34,7 +34,7 @@ import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Protectoras extends AppCompatActivity implements View.OnClickListener {
+public class Protectoras extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerView;
     private AdapterProtectoras adapter;
@@ -94,6 +94,8 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+        searchView.setOnQueryTextListener(this);
+
         }
 
     private void searchView() {
@@ -130,5 +132,14 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
     }}
 
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapter.filtrado(s);
+        return false;
+    }
 }
