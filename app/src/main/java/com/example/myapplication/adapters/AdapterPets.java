@@ -10,10 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Pet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDatos>{
     private List<Pet> petsList;
@@ -65,6 +68,29 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
     public int getItemCount() {
         return petsList.size();
     }
+
+    public void filtrado(String search) {
+        int longitud = search.length();
+        if(longitud==0){
+            petsList.clear();
+            petsList.addAll(listaOriginal);
+        }else{
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<Pet> collecion = petsList.stream().filter(i -> i.getPetName().toLowerCase().contains(search.toLowerCase())).collect(Collectors.toList());
+                petsList.clear();
+                petsList.addAll(collecion);
+
+            }else {
+                for (Pet pet: listaOriginal) {
+                    if(pet.getPetName().toLowerCase().contains(search.toLowerCase(Locale.ROOT))){
+                        petsList.add(pet);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     class  ViewHolderDatos extends  RecyclerView.ViewHolder{
         TextView petName, petStatus, petType, contactPerson, phone, email,description;
 
