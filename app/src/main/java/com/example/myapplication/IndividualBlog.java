@@ -36,6 +36,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
     private TextView blogTitle , title_coment, description_coment;
     private TextView blogDescription;
     private Blogs blogs;
+    private Coment coment;
     private Blog blog;
     private Button btnAddComent, btnCancelComent;
     private RecyclerView recyclerViewComent;
@@ -69,14 +70,17 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         recyclerViewComent.setItemAnimator(new DefaultItemAnimator());
 
         Bundle extras= getIntent().getExtras();
-
-        root2.child(extras.getString("blog_key")).addValueEventListener(new ValueEventListener() {
+        blogkey= extras.getString("blogkey");
+        root2.child(blogkey).child("coment").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    comentList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()) {
 
-                if (snapshot.exists()) {
-                    blog = snapshot.getValue(Blog.class);
+                    Coment coment = ds.getValue(Coment.class);
+                    comentList.add(coment);
                 }
+                adapterComent.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -93,7 +97,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         }
    /*     Glide.with(this).load(extras.getString("image"))
                 .into(blogImg);*/
-        blogkey= extras.getString("blogkey");
+
         String title= extras.getString("title");
         String description = extras.getString("description");
 

@@ -38,7 +38,7 @@ public class AdapterComent extends RecyclerView.Adapter<AdapterComent.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
         Coment coment =comentList.get(position);
         //obtenemos los datos de la lista
-        String title = coment.gettitle_ccoment();
+        String title = coment.gettitle_coment();
         String description =coment.getdescription_coment();
 
         //ponemos a los textview los datos con settext
