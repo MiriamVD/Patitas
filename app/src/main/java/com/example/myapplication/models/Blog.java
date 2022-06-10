@@ -13,10 +13,11 @@ public class Blog  {
    // private Map<String, Object> coment;
 
 
-    public Blog(String image, String title, String description, Map<String, Object> coment) {
+    public Blog(String image, String title, String description, String blogkey) {
         this.image = image;
         this.title = title;
         this.description = description;
+        this.blogkey =blogkey;
        // this.coment = coment;
 
     }

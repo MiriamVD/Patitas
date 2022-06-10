@@ -45,6 +45,8 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
     private RecyclerView RecyclerViewComent;
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference root2 = db.getReference().child("blogs");
+    private List<Blog> blogList;
+    String blogkey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         }
    /*     Glide.with(this).load(extras.getString("image"))
                 .into(blogImg);*/
-
+        blogkey= extras.getString("blogkey");
         String title= extras.getString("title");
         String description = extras.getString("description");
 
@@ -142,6 +144,10 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         adapterComent.notifyDataSetChanged();
     }
 
+/*    private boolean updateBlog(String blogkey, String title, String description, String image){
+        root2.child(blogkey);
+        Blog blog= new Blog(blogkey,title,description, image);
+    }*/
 
     private void insert(){
        /*
@@ -160,13 +166,14 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         Log.d(key,"key");
         root2.child(key).child("coment").updateChildren(coment)*/
 
+
         String key= root2.getKey();
         Log.d(key,"key");
         Map<String, Object> coment=new HashMap<>();
-        coment.put("/title_coment/", comentTitle.getText().toString().trim());
-        coment.put("/description_coment/", comentDescription.getText().toString().trim());
+        coment.put("title_coment", comentTitle.getText().toString().trim());
+        coment.put("description_coment", comentDescription.getText().toString().trim());
 
-        root2.child(key).setValue(coment)
+        root2.child(blogkey).child("coment").push().setValue(coment)
 
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
