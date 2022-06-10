@@ -9,6 +9,7 @@ public class Blog  {
     private String image;
     private String title;
     private String description;
+    private String blogkey;
    // private Map<String, Object> coment;
 
 
@@ -55,6 +56,6 @@ public class Blog  {
         this.description = description;
     }
 
-
+    public String getblogkey(){return this.blogkey;}
 
 }
