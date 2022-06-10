@@ -20,8 +20,11 @@ import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Coment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,6 +67,23 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         recyclerViewComent.setItemAnimator(new DefaultItemAnimator());
 
         Bundle extras= getIntent().getExtras();
+
+        root2.child(extras.getString("blog_key")).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+                    blog = snapshot.getValue(Blog.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(IndividualBlog.this,"Error:" + error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
         if(extras==null){
             finish();
