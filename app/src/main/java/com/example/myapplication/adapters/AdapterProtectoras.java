@@ -1,29 +1,35 @@
-package com.example.myapplication;
+package com.example.myapplication.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
+import com.example.myapplication.R;
 import com.example.myapplication.models.Protectora;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
-    private List<Protectora> listaProtectora;
-    ArrayList<Protectora> listaOriginal;
-    Context context;
+    private ArrayList<Protectora> listaProtectora;
+    private List<Protectora> listaOriginal;
+
+    private Context context;
 
 
-    public void setListaProtectora(List<Protectora> listaProtectora){
-        this.listaProtectora=listaProtectora;
+
+    public void setListaProtectora(ArrayList<Protectora> listaProtectora){
+        this.listaOriginal= new ArrayList<Protectora>(listaProtectora);
     }
 
     //genero un constructor
@@ -31,8 +37,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     public AdapterProtectoras( Context context, ArrayList<Protectora> protectora) {
         this.context =context;
         this.listaProtectora = protectora;
-        listaOriginal=new ArrayList<>();
-        listaOriginal.addAll(listaProtectora);
+
     }
 
     @NonNull
@@ -48,11 +53,15 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     //Encargado de actualizar los datos de un ViewHolder ya existente.
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int i) {
 
+        Glide.with(context)
+                .load(listaProtectora.get(i).getImage())
+                .into(holder.imgProtectora);
 
         //obtenemos la protectora de nuestra lista gracias al indice i
         Protectora protectora =listaProtectora.get(i);
         //obtenemos los datos de la lista
-        //Drawable img = protectora.getImgProtectora();
+
+        String imageUrl = protectora.getImage();
         String name = protectora.getname();
         String phone =protectora.getphone();
         String address = protectora.getaddress();
@@ -60,8 +69,6 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         String website = protectora.getwebsite();
         //ponemos a los textview los datos con settext
 
-
-      //  holder.img.setBackgroundDrawable(img);
         holder.name.setText(name);
         holder.number.setText(phone);
         holder.direction.setText(address);
@@ -70,15 +77,34 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
 
     }
 
-    public void filter(String txtBuscar){
-        int length=txtBuscar.length();
-        if(length==0){
+    public void filtrado(String SearchView){
+
+        int longitud = SearchView.length();
+        if(longitud==0){
             listaProtectora.clear();
             listaProtectora.addAll(listaOriginal);
+        }else{
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
 
+                    List<Protectora> collecion = listaProtectora.stream().filter(i -> i.getname().toLowerCase().contains(SearchView)).collect(Collectors.toList());
+                    listaProtectora.clear();
+                    listaProtectora.addAll(collecion);
+            }
+/*            else {
+                listaProtectora.clear();
+                for (Protectora prot: listaOriginal) {
+                    if(prot.getname().toLowerCase().contains(SearchView.toLowerCase(Locale.ROOT))){
+                        listaProtectora.add(prot);
+                    }
+                }
+            }*/
         }
 
+        notifyDataSetChanged();
+
+
     }
+
 
     @Override
     //obtenemos la cantidad de items
@@ -87,16 +113,17 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
         return listaProtectora.size();
     }
 
+
     class ViewHolderDatos extends RecyclerView.ViewHolder {
-       // View img;
+        ImageView imgProtectora;
         TextView name, number, direction, cd, website ;
 
         ViewHolderDatos(@NonNull View itemView) {
 
             super(itemView);
-            //this.img= itemView.findViewById(R.id.imgProtectora);
+
             //Le pasamos la referencia del xml
-               // this.img = itemView.findViewById(R.id.imgBlog);
+                this.imgProtectora = itemView.findViewById(R.id.imgProtectora);
                 this.name = itemView.findViewById(R.id.nameBlog);
                 this.number= itemView.findViewById(R.id.descriptionBlog);
                 this.direction = itemView.findViewById(R.id.directionProtectora);

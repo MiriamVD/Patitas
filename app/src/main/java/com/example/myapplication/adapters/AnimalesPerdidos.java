@@ -1,18 +1,14 @@
-package com.example.myapplication;
+package com.example.myapplication.adapters;
 
 import android.os.Bundle;
 
 
-import com.example.myapplication.fragments.AddFragment;
-import com.example.myapplication.fragments.MapFragment;
+import com.example.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.ListFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 

@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.example.myapplication.adapters.AdapterBlog;
 import com.example.myapplication.models.Blog;
-import com.example.myapplication.models.Protectora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,15 +23,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Blogs extends AppCompatActivity implements View.OnClickListener  {
+public class Blogs extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerViewBlog;
     private AdapterBlog adapterBlog;
     private ArrayList<Blog> listaBlog;
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference root2 = db.getReference().child("blogs");
+    private Context context;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
         listaBlog = new ArrayList<>();
         adapterBlog = new AdapterBlog(this,listaBlog);
 
+        searchView=findViewById(R.id.searchBlog);
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
         recyclerViewBlog.setAdapter(adapterBlog);
@@ -62,6 +65,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Blogs.this,"Error:" + error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -73,23 +77,20 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
                 Blog blogSeleccionado = listaBlog.get(position);
 
-                Intent intent = new Intent(Blogs.this, individualBlog.class);
-               // intent.putExtra("img", blogSeleccionado.getImgBlog());
+                Intent intent = new Intent(Blogs.this, IndividualBlog.class);
+              //  intent.putExtra("image", listaBlog.get(position).getImage());
                 intent.putExtra("title", blogSeleccionado.gettitle());
                 intent.putExtra("description", blogSeleccionado.getdescription());
+
                 startActivity(intent);
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Blog blogSeleccionado = listaBlog.get(position);
-                Intent intent = new Intent(Blogs.this, individualBlog.class);
-                //intent.putExtra("img", fileName);
-                intent.putExtra("name", blogSeleccionado.gettitle());
-                intent.putExtra("description", blogSeleccionado.getdescription());
-                startActivity(intent);
+
             }
         }));
+        searchView.setOnQueryTextListener(this);
     }
 
     @Override
@@ -100,4 +101,16 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 startActivity(returned);
                 break;
     }
-}}
+}
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapterBlog.filtrado(s);
+        return false;
+    }
+}

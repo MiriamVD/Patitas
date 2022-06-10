@@ -1,6 +1,7 @@
 package com.example.myapplication.fragments;
 
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -34,12 +36,13 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class AddFragment extends Fragment {
     private static final int RESULT_OK = 200;
     private Button btnPublicar;
-    private ImageView btnBuscar1, btnBuscar2, btnBuscar3, btnBuscar4, btnBuscar5;
+    private ImageView btnBuscar1, btnBuscar2, btnBuscar3, btnBuscar4, btnBuscar5, btnLocation;
     private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription;
     private Spinner spinnerStatus, spinnerType;
 
@@ -74,6 +77,7 @@ public AddFragment(){
         btnBuscar3=view.findViewById(R.id.btnBuscar3);
         btnBuscar4=view.findViewById(R.id.btnBuscar4);
         btnBuscar5=view.findViewById(R.id.btnBuscar5);
+        btnLocation=view.findViewById(R.id.btnLocation);
 
         etPetName=view.findViewById(R.id.etPetName);
         etContactPerson=view.findViewById(R.id.etContactPerson);
@@ -83,6 +87,13 @@ public AddFragment(){
         spinnerStatus=view.findViewById(R.id.spinnerStatus);
         spinnerType=view.findViewById(R.id.spinnerType);
 
+
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               //getLocation();
+            }
+        });
 
 
 
@@ -116,7 +127,7 @@ public AddFragment(){
         btnBuscar1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCamera();
+                //openCamera();
                /** try {
                     Intent intent = new Intent();
                     intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -155,7 +166,18 @@ public AddFragment(){
 
     }
 
-private void openCamera(){
+    /**private void getLocation() {
+
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(getContext(), "Tenemos permiso", Toast.LENGTH_LONG).show();
+        }else{
+            ActivityCompat.requestPermissions(getContext(), new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION}, Manifest.permission.ACCESS_FINE_LOCATION, 1);
+            }
+        }
+    }*/
+
+    private void openCamera(){
     Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     if(intent.resolveActivity(getActivity().getPackageManager())!=null){
         startActivityForResult(intent, 1);

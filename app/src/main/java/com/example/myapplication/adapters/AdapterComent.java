@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.adapters;
 
 
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import com.example.myapplication.R;
 import com.example.myapplication.models.Coment;
 
 public class AdapterComent extends RecyclerView.Adapter<AdapterComent.ViewHolderDatos> {
@@ -34,11 +35,11 @@ public class AdapterComent extends RecyclerView.Adapter<AdapterComent.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterComent.ViewHolderDatos holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
         Coment coment =comentList.get(position);
         //obtenemos los datos de la lista
-        String title = coment.getTitleComent();
-        String description =coment.getDescriptionComent();
+        String title = coment.gettitle_ccoment();
+        String description =coment.getdescription_coment();
 
         //ponemos a los textview los datos con settext
 

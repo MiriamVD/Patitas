@@ -1,14 +1,43 @@
 package com.example.myapplication.models;
 
-import android.graphics.drawable.Drawable;
 
-public class Blog {
-    
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Map;
+
+public class Blog  {
+    private String image;
     private String title;
     private String description;
+   // private Map<String, Object> coment;
 
 
+    public Blog(String image, String title, String description, Map<String, Object> coment) {
+        this.image = image;
+        this.title = title;
+        this.description = description;
+       // this.coment = coment;
 
+    }
+
+    public Blog(){
+
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+   /* public Map<String, Object> getComent() {
+        return coment;
+    }
+
+    public void setComent(Map<String, Object> coment) {
+        this.coment = coment;
+    }*/
 
     public String gettitle() {
         return title;

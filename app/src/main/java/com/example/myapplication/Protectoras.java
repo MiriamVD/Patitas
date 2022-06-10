@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.example.myapplication.adapters.AdapterProtectoras;
 import com.example.myapplication.models.Protectora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -19,18 +22,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Protectoras extends AppCompatActivity implements View.OnClickListener {
+public class Protectoras extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerView;
     private AdapterProtectoras adapter;
     private ArrayList<Protectora> listaProtectora;
     private SearchView searchView;
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
-    private DatabaseReference root = db.getReference().child("protectoras");
+    private DatabaseReference reference = db.getReference().child("protectoras");
+    private ImageView imgProtectora;
+
 
 
 
@@ -40,43 +43,52 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_protectoras);
 
         recyclerView=findViewById(R.id.recyclerView);
-
+        searchView=findViewById(R.id.search);
         setTitle("Protectoras");
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
-        searchView=findViewById(R.id.searchView);
 
 
+        /**String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
+        ImageView ivBasicImage = (ImageView) findViewById(R.id.imgBlog);
+        Picasso.with(Protectoras.this).load(imageUri).into(ivBasicImage);*/
 
         listaProtectora= new ArrayList<>();
 
-            adapter = new AdapterProtectoras(this, listaProtectora);
-
-
+        adapter = new AdapterProtectoras(this, listaProtectora);
+        adapter.setListaProtectora(listaProtectora);
 
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager mLayoutManager= new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        root.addValueEventListener(new ValueEventListener() {
+
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot ds: snapshot.getChildren() ) {
+
+
                     Protectora protectora =ds.getValue(Protectora.class);
                     listaProtectora.add(protectora);
                 }
-                adapter.notifyDataSetChanged();
+               adapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Protectoras.this,"Error:" + error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });
 
+        searchView.setOnQueryTextListener(this);
+
         }
+
 
 
     @Override
@@ -89,5 +101,14 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
     }}
 
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapter.filtrado(s);
+        return true;
+    }
 }
