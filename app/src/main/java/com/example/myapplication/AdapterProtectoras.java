@@ -97,13 +97,14 @@ public Filter getFilter(){
                 listaProtectora.clear();
                 listaProtectora.addAll(collecion);
 
-            }else {
+            }
+   /*         else {
                 for (Protectora prot: listaOriginal) {
                     if(prot.getname().toLowerCase().contains(SearchView.toLowerCase(Locale.ROOT))){
                         listaProtectora.add(prot);
                     }
                 }
-            }
+            }*/
         }
         notifyDataSetChanged();
     }

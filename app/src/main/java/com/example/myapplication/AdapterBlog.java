@@ -18,9 +18,12 @@ import com.example.myapplication.models.Protectora;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDatos> {
     private List<Blog> listaBlog;
+    private ArrayList<Blog> listaOriginal;
 
     Context context;
 
@@ -34,6 +37,8 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
     public AdapterBlog(Context context,List<Blog> blog) {
         this.context=context;
         this.listaBlog = blog;
+        listaOriginal = new ArrayList<>();
+        listaOriginal.addAll(listaBlog);
 
     }
 
@@ -69,6 +74,28 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
     public int getItemCount() {
 
         return listaBlog.size();
+    }
+
+    public void filtrado(String searchView ) {
+        int longitud = searchView.length();
+        if(longitud==0){
+            listaBlog.clear();
+            listaBlog.addAll(listaOriginal);
+        }else{
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<Blog> collecion = listaBlog.stream().filter(i -> i.gettitle().toLowerCase().contains(searchView.toLowerCase())).collect(Collectors.toList());
+                listaBlog.clear();
+                listaBlog.addAll(collecion);
+
+            }else {
+                for (Blog blg: listaOriginal) {
+                    if(blg.gettitle().toLowerCase().contains(searchView.toLowerCase(Locale.ROOT))){
+                        listaBlog.add(blg);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {

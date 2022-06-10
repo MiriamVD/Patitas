@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myapplication.models.Blog;
@@ -22,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Blogs extends AppCompatActivity implements View.OnClickListener  {
+public class Blogs extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerViewBlog;
     private AdapterBlog adapterBlog;
@@ -30,6 +31,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference root2 = db.getReference().child("blogs");
     private Context context;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
         listaBlog = new ArrayList<>();
         adapterBlog = new AdapterBlog(this,listaBlog);
 
+        searchView.findViewById(R.id.searchBlog);
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
         recyclerViewBlog.setAdapter(adapterBlog);
@@ -96,4 +99,16 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener  {
                 startActivity(returned);
                 break;
     }
-}}
+}
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapterBlog.filtrado(s);
+        return false;
+    }
+}
