@@ -56,6 +56,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
         listaProtectora= new ArrayList<>();
 
         adapter = new AdapterProtectoras(this, listaProtectora);
+        adapter.setListaProtectora(listaProtectora);
 
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager mLayoutManager= new LinearLayoutManager(getApplicationContext());

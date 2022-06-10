@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +29,7 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
 
 
     public void setListaProtectora(ArrayList<Protectora> listaProtectora){
-        this.listaProtectora=listaProtectora;
+        this.listaOriginal= new ArrayList<Protectora>(listaProtectora);
     }
 
     //genero un constructor
@@ -39,8 +37,6 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     public AdapterProtectoras( Context context, ArrayList<Protectora> protectora) {
         this.context =context;
         this.listaProtectora = protectora;
-        listaOriginal = new ArrayList<>();
-        listaOriginal.addAll(listaProtectora);
 
     }
 
@@ -82,26 +78,30 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
     }
 
     public void filtrado(String SearchView){
+
         int longitud = SearchView.length();
         if(longitud==0){
             listaProtectora.clear();
             listaProtectora.addAll(listaOriginal);
         }else{
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<Protectora> collecion = listaProtectora.stream().filter(i -> i.getname().toLowerCase().contains(SearchView.toLowerCase())).collect(Collectors.toList());
-                listaProtectora.clear();
-                listaProtectora.addAll(collecion);
 
+                    List<Protectora> collecion = listaProtectora.stream().filter(i -> i.getname().toLowerCase().contains(SearchView)).collect(Collectors.toList());
+                    listaProtectora.clear();
+                    listaProtectora.addAll(collecion);
             }
-            else {
+/*            else {
+                listaProtectora.clear();
                 for (Protectora prot: listaOriginal) {
                     if(prot.getname().toLowerCase().contains(SearchView.toLowerCase(Locale.ROOT))){
                         listaProtectora.add(prot);
                     }
                 }
-            }
+            }*/
         }
-        this.notifyDataSetChanged();
+
+        notifyDataSetChanged();
+
 
     }
 

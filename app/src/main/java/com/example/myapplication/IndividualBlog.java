@@ -140,7 +140,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         Log.d(key,"key");
         root2.child(key).child("coment").updateChildren(coment)*/
 
-        String key= root2.push().getKey();
+        String key= root2.getKey();
         Log.d(key,"key");
         Map<String, Object> coment=new HashMap<>();
         coment.put("/title_coment/", comentTitle.getText().toString().trim());
