@@ -128,6 +128,9 @@ public class ListFragment extends Fragment implements SearchView.OnQueryTextList
 
     }
 
+
+
+
     @Override
     public boolean onQueryTextSubmit(String s) {
         return false;

@@ -18,6 +18,11 @@
     <string name="titleSpinner1">Mascota</string>
     <string name="titleSpinner2">Tipo</string>
     <string name="name2">Nombre Persona Contacto</string>
+    <string name="welcomeText">Bienvenidos a Patitas</string>
+    <string name="titleComments">Comentarios</string>
+    <string name="addComment">Añade un comentario</string>
+
+
 
     <string-array name="statusEntries">
         <item>Estado</item>
