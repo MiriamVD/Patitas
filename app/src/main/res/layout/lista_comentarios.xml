@@ -23,7 +23,8 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="18dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:fontFamily="@font/hacuia"/>
 
         <TextView
             android:id="@+id/comentDescription"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:fontFamily="@font/hacuia"/>
 
     </LinearLayout>
 

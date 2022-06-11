@@ -31,7 +31,6 @@ public class AnimalesPerdidos extends AppCompatActivity {
         viewPager2.setAdapter(madapter);
 
         int[] icon = new int[]{
-                R.drawable.map_icon,
                 R.drawable.list2_icon,
                 R.drawable.pet_icon
 

@@ -27,6 +27,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -41,21 +48,14 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 
-public class AddFragment extends Fragment {
-    private static final int RESULT_OK = 200;
+public class AddFragment extends Fragment  {
     private Button btnPublicar;
     private ImageView btnBuscar1, btnBuscar2, btnBuscar3, btnBuscar4, btnBuscar5, btnLocation;
-    private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription;
+    private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription, etStreet, etCity;
     private Spinner spinnerStatus, spinnerType;
 
-    private StorageReference storageReference;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Image");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("pets");
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    String phonePattern="/^[6-9]$/";
-
-    //("(\6789)*(6|7|9|8)*(0-9){8}");
-
-
 
 
 
@@ -66,6 +66,7 @@ public AddFragment(){
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         // Inflate the layout for this fragment
        return inflater.inflate(R.layout.fragment_add, container, false);
      
@@ -75,30 +76,24 @@ public AddFragment(){
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
     super.onViewCreated(view, savedInstanceState);
 
+
         btnPublicar=view.findViewById(R.id.btnPublicar);
         btnBuscar1=view.findViewById(R.id.btnBuscar1);
         btnBuscar2=view.findViewById(R.id.btnBuscar2);
         btnBuscar3=view.findViewById(R.id.btnBuscar3);
         btnBuscar4=view.findViewById(R.id.btnBuscar4);
         btnBuscar5=view.findViewById(R.id.btnBuscar5);
-        btnLocation=view.findViewById(R.id.btnLocation);
 
         etPetName=view.findViewById(R.id.etPetName);
         etContactPerson=view.findViewById(R.id.etContactPerson);
         etPhone=view.findViewById(R.id.etPhone);
         etEmail=view.findViewById(R.id.etEmail);
         etDescription=view.findViewById(R.id.etDescription);
+        etStreet=view.findViewById(R.id.etStreet);
+        etCity=view.findViewById(R.id.etCity);
+
         spinnerStatus=view.findViewById(R.id.spinnerStatus);
         spinnerType=view.findViewById(R.id.spinnerType);
-
-
-
-        btnLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               //getLocation();
-            }
-        });
 
 
 
@@ -113,6 +108,7 @@ public AddFragment(){
                 String addContactPerson=etContactPerson.getText().toString().trim();
                 String addEmail=etEmail.getText().toString().trim();
                 String addDescription=etDescription.getText().toString().trim();
+                String addCity=etCity.getText().toString().trim();
 
 
 
@@ -120,7 +116,7 @@ public AddFragment(){
                 Toast.makeText(getActivity(),"Debes seleccionar las opciones", Toast.LENGTH_SHORT).show();
             }else{
                 if(addPetName.isEmpty() && addPhone.isEmpty() && addContactPerson.isEmpty() &&addEmail.isEmpty()
-                        && addDescription.isEmpty() ){
+                        && addDescription.isEmpty () && addCity.isEmpty()){
                     Toast.makeText(getActivity(),"Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }else if((addPhone.length()!=9) || (addPhone.charAt(0)!='6' &&  addPhone.charAt(0)!='7' && addPhone.charAt(0)!='8' && addPhone.charAt(0)!='9' ))
 
@@ -139,58 +135,9 @@ public AddFragment(){
             }
 
         });
-        btnBuscar1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //openCamera();
-               /** try {
-                    Intent intent = new Intent();
-                    intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivity(intent);
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
-
-
-
-               /**boolean pick =true;
-               if(pick==true){
-                   if(!checkCameraPermission()){
-                       requestCameraPermission();
-
-
-               }else
-                   PickImage();
-
-               }else{
-                   if(!checkStoragePermission()){
-                       requestStoragePermission();
-                   }else{
-                       PickImage();
-                   }
-                }*/
-
-
-            }
-
-
-
-
-        });
 
     }
-
-    /**private void getLocation() {
-
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(getContext(), "Tenemos permiso", Toast.LENGTH_LONG).show();
-        }else{
-            ActivityCompat.requestPermissions(getContext(), new String[]{
-                    Manifest.permission.ACCESS_COARSE_LOCATION}, Manifest.permission.ACCESS_FINE_LOCATION, 1);
-            }
-        }
-    }*/
 
     private void openCamera(){
     Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -200,14 +147,7 @@ public AddFragment(){
     }
 
 }
-/**public void onActivityResult(int requestCode, int resultCode, Intent data){
-    super.onActivityResult(requestCode,resultCode,data);
-    if(requestCode==1 && resultCode == RESULT_OK){
-        Bundle extras = data.getExtras();
-        Bitmap imgBitmap =(Bitmap) extras.get("data");
-    }
 
-}*/
 
     private void insert(){
     Map<String, Object> map=new HashMap<>();
@@ -218,8 +158,11 @@ public AddFragment(){
     map.put("description", etDescription.getText().toString().trim());
     map.put("selectedStatus",spinnerStatus.getSelectedItem().toString().trim());
     map.put("selectedType",spinnerType.getSelectedItem().toString().trim());
+    map.put("street", etStreet.getText().toString().trim());
+    map.put("city", etCity.getText().toString().trim());
 
-    FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
+
+        FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void avoid) {
@@ -228,6 +171,8 @@ public AddFragment(){
                     etContactPerson.setText("");
                     etEmail.setText("");
                     etDescription.setText("");
+                    etStreet.setText("");
+                    etCity.setText("");
                     Toast.makeText(getContext(), "Insertado correctamente", Toast.LENGTH_LONG).show();
 
 
@@ -240,45 +185,14 @@ public AddFragment(){
 
 
                 }
-            })
-    ;
+            });
 
     }
-    /**private boolean checkCameraPermission() {
-        boolean res1= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)==pm.PERMISSION_GRANTED;
-        boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;
-        return res1 && res2;
-    }
-    private boolean checkStoragePermission() {
-        boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;
-        return res2;
-
-    }
-    private void requestCameraPermission() {
-    requestPermissions(new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-    }
-    private void requestStoragePermission() {
-        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
 
 
-    }
-    private void PickImage() {
-        CropImage.activity(image_url)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .start((Activity) getActivity().getApplicationContext());
 
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-    if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-        CropImage.ActivityResult result=CropImage.getActivityResult(data);
-        if(resultCode== RESULT_OK){
-            Uri resultUri = result.getUri();
-        }else if(resultCode ==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
-            Exception error = result.getError();
-        }
-    }
-    }*/
+
+
 
 
 }

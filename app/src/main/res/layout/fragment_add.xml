@@ -20,7 +20,6 @@
         tools:context=".fragments.AddFragment">
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,30 +55,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="30dp"
-                android:hint="@string/location"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <ImageButton
-                android:id="@+id/btnLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/loc_icon" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:orientation="horizontal">
 
@@ -89,9 +64,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
-                android:hint="@string/name" />
+                android:textColor="#000000"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etPhone"
@@ -99,9 +76,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/phone"
                 android:inputType="phone"
                 android:minHeight="50dp"
-                android:hint="@string/phone" />
+                android:textColor="#020000"
+                android:fontFamily="@font/hacuia"/>
         </LinearLayout>
 
         <LinearLayout
@@ -116,8 +95,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/name2"
                 android:inputType="textPersonName"
-                android:hint="@string/name2" />
+                android:textColor="#050000"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etEmail"
@@ -125,9 +106,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
+                android:hint="@string/mail"
                 android:inputType="textEmailAddress"
                 android:minHeight="50dp"
-                android:hint="@string/mail" />
+                android:textColor="#000000"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etDescription"
@@ -135,10 +118,55 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
+                android:hint="@string/description"
                 android:inputType="textPersonName"
                 android:minHeight="90dp"
-                android:hint="@string/description"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textDirection="firstStrongRtl"
+                android:fontFamily="@font/hacuia"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPetLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:text="@string/titleLocation"
+                android:textAlignment="center"
+                android:textColor="#020000"
+                android:textSize="18dp"
+                android:fontFamily="@font/hacuia"/>
+
+            <EditText
+                android:id="@+id/etStreet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:hint="@string/insertStreet"
+                android:minHeight="40dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:fontFamily="@font/hacuia"/>
+
+            <EditText
+                android:id="@+id/etCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:hint="@string/insertCity"
+                android:minHeight="40dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:fontFamily="@font/hacuia"/>
 
             <TextView
                 android:id="@+id/tvImages"
@@ -147,7 +175,9 @@
                 android:minHeight="20dp"
                 android:text="@string/images_header"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/hacuia"/>
+
         </LinearLayout>
 
         <LinearLayout
