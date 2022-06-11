@@ -49,13 +49,11 @@ import java.util.regex.Pattern;
 
 
 public class AddFragment extends Fragment  {
-    private static final int RESULT_OK = 200;
     private Button btnPublicar;
     private ImageView btnBuscar1, btnBuscar2, btnBuscar3, btnBuscar4, btnBuscar5, btnLocation;
     private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription, etStreet, etCity;
     private Spinner spinnerStatus, spinnerType;
 
-    private StorageReference storageReference;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("pets");
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -69,7 +67,6 @@ public AddFragment(){
                              Bundle savedInstanceState) {
 
 
-
         // Inflate the layout for this fragment
        return inflater.inflate(R.layout.fragment_add, container, false);
      
@@ -78,7 +75,6 @@ public AddFragment(){
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
     super.onViewCreated(view, savedInstanceState);
-
 
 
         btnPublicar=view.findViewById(R.id.btnPublicar);
@@ -101,13 +97,6 @@ public AddFragment(){
 
 
 
-
-
-
-
-
-
-
         btnPublicar.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -119,7 +108,6 @@ public AddFragment(){
                 String addContactPerson=etContactPerson.getText().toString().trim();
                 String addEmail=etEmail.getText().toString().trim();
                 String addDescription=etDescription.getText().toString().trim();
-                //String addStreet=etStreet.getText().toString().trim();
                 String addCity=etCity.getText().toString().trim();
 
 
@@ -147,58 +135,9 @@ public AddFragment(){
             }
 
         });
-        btnBuscar1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //openCamera();
-               /** try {
-                    Intent intent = new Intent();
-                    intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivity(intent);
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
-
-
-
-               /**boolean pick =true;
-               if(pick==true){
-                   if(!checkCameraPermission()){
-                       requestCameraPermission();
-
-
-               }else
-                   PickImage();
-
-               }else{
-                   if(!checkStoragePermission()){
-                       requestStoragePermission();
-                   }else{
-                       PickImage();
-                   }
-                }*/
-
-
-            }
-
-
-
-
-        });
 
     }
-
-    /**private void getLocation() {
-
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(getContext(), "Tenemos permiso", Toast.LENGTH_LONG).show();
-        }else{
-            ActivityCompat.requestPermissions(getContext(), new String[]{
-                    Manifest.permission.ACCESS_COARSE_LOCATION}, Manifest.permission.ACCESS_FINE_LOCATION, 1);
-            }
-        }
-    }*/
 
     private void openCamera(){
     Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -208,14 +147,7 @@ public AddFragment(){
     }
 
 }
-/**public void onActivityResult(int requestCode, int resultCode, Intent data){
-    super.onActivityResult(requestCode,resultCode,data);
-    if(requestCode==1 && resultCode == RESULT_OK){
-        Bundle extras = data.getExtras();
-        Bitmap imgBitmap =(Bitmap) extras.get("data");
-    }
 
-}*/
 
     private void insert(){
     Map<String, Object> map=new HashMap<>();
@@ -253,49 +185,14 @@ public AddFragment(){
 
 
                 }
-            })
-    ;
+            });
 
     }
 
 
 
 
-    /**private boolean checkCameraPermission() {
-        boolean res1= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)==pm.PERMISSION_GRANTED;
-        boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;
-        return res1 && res2;
-    }
-    private boolean checkStoragePermission() {
-        boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;
-        return res2;
 
-    }
-    private void requestCameraPermission() {
-    requestPermissions(new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-    }
-    private void requestStoragePermission() {
-        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-
-
-    }
-    private void PickImage() {
-        CropImage.activity(image_url)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .start((Activity) getActivity().getApplicationContext());
-
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-    if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-        CropImage.ActivityResult result=CropImage.getActivityResult(data);
-        if(resultCode== RESULT_OK){
-            Uri resultUri = result.getUri();
-        }else if(resultCode ==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
-            Exception error = result.getError();
-        }
-    }
-    }*/
 
 
 }

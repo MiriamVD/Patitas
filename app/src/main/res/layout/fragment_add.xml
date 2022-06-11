@@ -67,7 +67,8 @@
                 android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etPhone"
@@ -78,7 +79,8 @@
                 android:hint="@string/phone"
                 android:inputType="phone"
                 android:minHeight="50dp"
-                android:textColor="#020000" />
+                android:textColor="#020000"
+                android:fontFamily="@font/hacuia"/>
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +97,8 @@
                 android:ems="10"
                 android:hint="@string/name2"
                 android:inputType="textPersonName"
-                android:textColor="#050000" />
+                android:textColor="#050000"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etEmail"
@@ -106,7 +109,8 @@
                 android:hint="@string/mail"
                 android:inputType="textEmailAddress"
                 android:minHeight="50dp"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etDescription"
@@ -118,7 +122,8 @@
                 android:inputType="textPersonName"
                 android:minHeight="90dp"
                 android:textAlignment="viewStart"
-                android:textDirection="firstStrongRtl" />
+                android:textDirection="firstStrongRtl"
+                android:fontFamily="@font/hacuia"/>
 
         </LinearLayout>
 
@@ -136,7 +141,8 @@
                 android:text="@string/titleLocation"
                 android:textAlignment="center"
                 android:textColor="#020000"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etStreet"
@@ -147,7 +153,8 @@
                 android:hint="@string/insertStreet"
                 android:minHeight="40dp"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:fontFamily="@font/hacuia"/>
 
             <EditText
                 android:id="@+id/etCity"
@@ -158,7 +165,8 @@
                 android:hint="@string/insertCity"
                 android:minHeight="40dp"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:fontFamily="@font/hacuia"/>
 
             <TextView
                 android:id="@+id/tvImages"
@@ -167,7 +175,8 @@
                 android:minHeight="20dp"
                 android:text="@string/images_header"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/hacuia"/>
 
         </LinearLayout>
 

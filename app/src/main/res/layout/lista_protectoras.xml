@@ -48,14 +48,16 @@
                         android:text="TextView"
                         android:textColor="#000000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hacuia"/>
 
                     <TextView
                         android:id="@+id/descriptionBlog"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TextView"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/hacuia"/>
 
                     <TextView
                         android:id="@+id/directionProtectora"
@@ -63,7 +65,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/hacuia"/>
 
                     <TextView
                         android:id="@+id/cdProtectora"
@@ -71,7 +74,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/hacuia"/>
 
                     <TextView
                         android:id="@+id/websiteProtectora"
@@ -81,7 +85,8 @@
                         android:autoLink="web"
                         android:text="TextView"
                         android:textColor="#000000"
-                        android:textColorLink="@color/primaryDarkColor" />
+                        android:textColorLink="@color/primaryDarkColor"
+                        android:fontFamily="@font/hacuia"/>
 
                 </LinearLayout>
 

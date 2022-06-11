@@ -30,6 +30,9 @@
 
 
 
+
+
+
     <string-array name="statusEntries">
         <item>Estado</item>
         <item>Perdida</item>
