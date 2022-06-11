@@ -36,6 +36,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
     private TextView blogTitle , title_coment, description_coment;
     private TextView blogDescription;
     private Blogs blogs;
+    private Coment coment;
     private Blog blog;
     private Button btnAddComent, btnCancelComent;
     private RecyclerView recyclerViewComent;
@@ -45,6 +46,8 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
     private RecyclerView RecyclerViewComent;
     private FirebaseDatabase db =FirebaseDatabase.getInstance();
     private DatabaseReference root2 = db.getReference().child("blogs");
+    private List<Blog> blogList;
+    String blogkey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +70,17 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         recyclerViewComent.setItemAnimator(new DefaultItemAnimator());
 
         Bundle extras= getIntent().getExtras();
-
-        root2.child(extras.getString("blog_key")).addValueEventListener(new ValueEventListener() {
+        blogkey= extras.getString("blogkey");
+        root2.child(blogkey).child("coment").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    comentList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()) {
 
-                if (snapshot.exists()) {
-                    blog = snapshot.getValue(Blog.class);
+                    Coment coment = ds.getValue(Coment.class);
+                    comentList.add(coment);
                 }
+                adapterComent.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -142,6 +148,10 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         adapterComent.notifyDataSetChanged();
     }
 
+/*    private boolean updateBlog(String blogkey, String title, String description, String image){
+        root2.child(blogkey);
+        Blog blog= new Blog(blogkey,title,description, image);
+    }*/
 
     private void insert(){
        /*
@@ -160,13 +170,14 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         Log.d(key,"key");
         root2.child(key).child("coment").updateChildren(coment)*/
 
+
         String key= root2.getKey();
         Log.d(key,"key");
         Map<String, Object> coment=new HashMap<>();
-        coment.put("/title_coment/", comentTitle.getText().toString().trim());
-        coment.put("/description_coment/", comentDescription.getText().toString().trim());
+        coment.put("title_coment", comentTitle.getText().toString().trim());
+        coment.put("description_coment", comentDescription.getText().toString().trim());
 
-        root2.child(key).setValue(coment)
+        root2.child(blogkey).child("coment").push().setValue(coment)
 
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -1,21 +1,25 @@
 package com.example.myapplication.models;
 
 public class Coment {
-    private String title_ccoment;
     private String description_coment;
+    private String title_coment;
 
 
-    public Coment(String title_ccoment, String description_coment) {
-        this.title_ccoment = title_ccoment;
+
+    public Coment(String description_coment, String title_coment) {
         this.description_coment = description_coment;
+        this.title_coment = title_coment;
+
     }
 
-    public String gettitle_ccoment() {
-        return title_ccoment;
+    public Coment(){}
+
+    public String gettitle_coment() {
+        return title_coment;
     }
 
-    public void settitle_ccoment(String title_ccoment) {
-        this.title_ccoment = title_ccoment;
+    public void settitle_coment(String title_coment) {
+        this.title_coment = title_coment;
     }
 
     public String getdescription_coment() {
@@ -24,11 +28,5 @@ public class Coment {
 
     public void setdescription_coment(String description_coment) {
         this.description_coment = description_coment;
-    }
-    @Override
-    public String toString(){
-        return  "Protectora{"+ "title_ccoment" +title_ccoment+ '\'' +
-                ", description_coment='" +description_coment + '\'' +
-                '}';
     }
 }

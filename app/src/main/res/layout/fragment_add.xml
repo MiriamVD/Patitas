@@ -197,8 +197,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@drawable/rounded_border_button"
             android:minHeight="60dip"
-            android:text="@string/btnPublicar" />
+            android:text="@string/btnPublicar"
+            android:textColor="#FFFAFA"
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

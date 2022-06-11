@@ -2,6 +2,7 @@ package com.example.myapplication.fragments;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -37,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 
 public class AddFragment extends Fragment {
@@ -48,9 +50,11 @@ public class AddFragment extends Fragment {
 
     private StorageReference storageReference;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Image");
-    private Uri image_url;
-    private ProgressBar progressBar;
-    //PackageManager pm = getActivity().getPackageManager();
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String phonePattern="/^[6-9]$/";
+
+    //("(\6789)*(6|7|9|8)*(0-9){8}");
+
 
 
 
@@ -88,6 +92,7 @@ public AddFragment(){
         spinnerType=view.findViewById(R.id.spinnerType);
 
 
+
         btnLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,14 +114,24 @@ public AddFragment(){
                 String addEmail=etEmail.getText().toString().trim();
                 String addDescription=etDescription.getText().toString().trim();
 
+
+
             if(spinnerStatus.getSelectedItemPosition()==0 || spinnerType.getSelectedItemPosition()==0){
                 Toast.makeText(getActivity(),"Debes seleccionar las opciones", Toast.LENGTH_SHORT).show();
             }else{
                 if(addPetName.isEmpty() && addPhone.isEmpty() && addContactPerson.isEmpty() &&addEmail.isEmpty()
                         && addDescription.isEmpty() ){
                     Toast.makeText(getActivity(),"Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
-                }else{
+                }else if((addPhone.length()!=9) || (addPhone.charAt(0)!='6' &&  addPhone.charAt(0)!='7' && addPhone.charAt(0)!='8' && addPhone.charAt(0)!='9' ))
+
+{
+                    Toast.makeText(getActivity().getApplicationContext(), "Debes introducir un número válido", Toast.LENGTH_SHORT).show();
+                }else if(addEmail.matches(emailPattern)==false){
+                    Toast.makeText(getActivity(), "Debes introducir un mail válido", Toast.LENGTH_SHORT).show();
+
+                } else{
                     insert();
+
 
                 }
             }
@@ -264,7 +279,6 @@ public AddFragment(){
         }
     }
     }*/
-
 
 
 }

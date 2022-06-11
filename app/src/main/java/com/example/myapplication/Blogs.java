@@ -79,9 +79,10 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener, Se
 
                 Intent intent = new Intent(Blogs.this, IndividualBlog.class);
               //  intent.putExtra("image", listaBlog.get(position).getImage());
+                intent.putExtra("blogkey", blogSeleccionado.getblogkey());
                 intent.putExtra("title", blogSeleccionado.gettitle());
                 intent.putExtra("description", blogSeleccionado.getdescription());
-                intent.putExtra("blog_key", blogSeleccionado.getblogkey());
+                intent.putExtra("blogkey", blogSeleccionado.getblogkey());
                 startActivity(intent);
             }
 
