@@ -36,36 +36,38 @@
 
             <Button
                 android:id="@+id/btn_Protectoras"
-                android:layout_width="250dp"
+                android:layout_width="270dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_border_button"
                 android:onClick="onClick"
                 android:text="@string/btn_Protectoras"
-
+                android:textSize="20dp"
                 android:textColor="@color/white"
                 tools:visibility="visible" />
 
 
             <Button
                 android:id="@+id/btn_Encuentra"
-                android:layout_width="250dp"
+                android:layout_width="270dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_border_button"
                 android:onClick="onClick"
                 android:text="@string/btn_Encontrar"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20dp"/>
 
             <Button
                 android:id="@+id/btn_Blog"
-                android:layout_width="250dp"
+                android:layout_width="270dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_border_button"
                 android:onClick="onClick"
                 android:text="@string/btn_Blog"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20dp"/>
 
            <!-- <Button
                 android:id="@+id/btnBlog"
