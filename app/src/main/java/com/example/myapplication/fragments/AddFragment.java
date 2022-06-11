@@ -27,6 +27,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -41,21 +48,16 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 
-public class AddFragment extends Fragment {
+public class AddFragment extends Fragment  {
     private static final int RESULT_OK = 200;
     private Button btnPublicar;
     private ImageView btnBuscar1, btnBuscar2, btnBuscar3, btnBuscar4, btnBuscar5, btnLocation;
-    private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription;
+    private EditText etPetName,etContactPerson, etPhone, etEmail,etDescription, etStreet, etCity;
     private Spinner spinnerStatus, spinnerType;
 
     private StorageReference storageReference;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Image");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("pets");
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    String phonePattern="/^[6-9]$/";
-
-    //("(\6789)*(6|7|9|8)*(0-9){8}");
-
-
 
 
 
@@ -66,6 +68,8 @@ public AddFragment(){
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         // Inflate the layout for this fragment
        return inflater.inflate(R.layout.fragment_add, container, false);
      
@@ -75,30 +79,32 @@ public AddFragment(){
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
     super.onViewCreated(view, savedInstanceState);
 
+
+
         btnPublicar=view.findViewById(R.id.btnPublicar);
         btnBuscar1=view.findViewById(R.id.btnBuscar1);
         btnBuscar2=view.findViewById(R.id.btnBuscar2);
         btnBuscar3=view.findViewById(R.id.btnBuscar3);
         btnBuscar4=view.findViewById(R.id.btnBuscar4);
         btnBuscar5=view.findViewById(R.id.btnBuscar5);
-        btnLocation=view.findViewById(R.id.btnLocation);
 
         etPetName=view.findViewById(R.id.etPetName);
         etContactPerson=view.findViewById(R.id.etContactPerson);
         etPhone=view.findViewById(R.id.etPhone);
         etEmail=view.findViewById(R.id.etEmail);
         etDescription=view.findViewById(R.id.etDescription);
+        etStreet=view.findViewById(R.id.etStreet);
+        etCity=view.findViewById(R.id.etCity);
+
         spinnerStatus=view.findViewById(R.id.spinnerStatus);
         spinnerType=view.findViewById(R.id.spinnerType);
 
 
 
-        btnLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               //getLocation();
-            }
-        });
+
+
+
+
 
 
 
@@ -113,6 +119,8 @@ public AddFragment(){
                 String addContactPerson=etContactPerson.getText().toString().trim();
                 String addEmail=etEmail.getText().toString().trim();
                 String addDescription=etDescription.getText().toString().trim();
+                //String addStreet=etStreet.getText().toString().trim();
+                String addCity=etCity.getText().toString().trim();
 
 
 
@@ -120,7 +128,7 @@ public AddFragment(){
                 Toast.makeText(getActivity(),"Debes seleccionar las opciones", Toast.LENGTH_SHORT).show();
             }else{
                 if(addPetName.isEmpty() && addPhone.isEmpty() && addContactPerson.isEmpty() &&addEmail.isEmpty()
-                        && addDescription.isEmpty() ){
+                        && addDescription.isEmpty () && addCity.isEmpty()){
                     Toast.makeText(getActivity(),"Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }else if((addPhone.length()!=9) || (addPhone.charAt(0)!='6' &&  addPhone.charAt(0)!='7' && addPhone.charAt(0)!='8' && addPhone.charAt(0)!='9' ))
 
@@ -218,8 +226,11 @@ public AddFragment(){
     map.put("description", etDescription.getText().toString().trim());
     map.put("selectedStatus",spinnerStatus.getSelectedItem().toString().trim());
     map.put("selectedType",spinnerType.getSelectedItem().toString().trim());
+    map.put("street", etStreet.getText().toString().trim());
+    map.put("city", etCity.getText().toString().trim());
 
-    FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
+
+        FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void avoid) {
@@ -228,6 +239,8 @@ public AddFragment(){
                     etContactPerson.setText("");
                     etEmail.setText("");
                     etDescription.setText("");
+                    etStreet.setText("");
+                    etCity.setText("");
                     Toast.makeText(getContext(), "Insertado correctamente", Toast.LENGTH_LONG).show();
 
 
@@ -244,6 +257,10 @@ public AddFragment(){
     ;
 
     }
+
+
+
+
     /**private boolean checkCameraPermission() {
         boolean res1= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)==pm.PERMISSION_GRANTED;
         boolean res2= ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)==pm.PERMISSION_GRANTED;

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class IndividualPet extends AppCompatActivity {
-    private TextView petName,petStatus, petType, phonePerson, contactPerson, emailPerson, petDescription;
+    private TextView petName,petStatus, petType, phonePerson, contactPerson, emailPerson, petDescription, petStreet, petCity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +18,8 @@ public class IndividualPet extends AppCompatActivity {
         contactPerson= findViewById(R.id.contactPerson);
         emailPerson = findViewById(R.id.email);
         petDescription= findViewById(R.id.description);
+        petStreet=findViewById(R.id.tvStreet);
+        petCity=findViewById(R.id.tvCity);
 
         Bundle extras= getIntent().getExtras();
 
@@ -34,6 +36,9 @@ public class IndividualPet extends AppCompatActivity {
         String contact = extras.getString("contact");
         String email = extras.getString("email");
         String description = extras.getString("description");
+        String city=extras.getString("city");
+        String street =extras.getString("street");
+
 
         petName.setText(name);
         petStatus.setText(status);
@@ -42,5 +47,7 @@ public class IndividualPet extends AppCompatActivity {
         contactPerson.setText(contact);
         emailPerson.setText(email);
         petDescription.setText(description);
+        petStreet.setText(street);
+        petCity.setText(city);
     }
 }
