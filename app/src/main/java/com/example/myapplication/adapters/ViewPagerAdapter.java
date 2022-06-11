@@ -10,7 +10,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.myapplication.fragments.AddFragment;
 import com.example.myapplication.fragments.ListFragment;
-import com.example.myapplication.fragments.MapFragment;
 
 import java.util.ArrayList;
 
@@ -28,14 +27,12 @@ public class ViewPagerAdapter  extends FragmentStateAdapter {
         Fragment fragment= new Fragment();
         switch (position){
             case 0:
-                fragment = new MapFragment();
-                break;
-            case 1:
                 fragment = new ListFragment();
                 break;
-            case 2:
+            case 1:
                 fragment = new AddFragment();
                 break;
+
         }
         return  fragment;
 
@@ -43,7 +40,7 @@ public class ViewPagerAdapter  extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 
     public void addFragment(Fragment fragment) {
