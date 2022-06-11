@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.adapters.AdapterComent;
 import com.example.myapplication.models.Blog;
 import com.example.myapplication.models.Coment;
@@ -95,8 +96,11 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
             finish();
             return;
         }
-   /*     Glide.with(this).load(extras.getString("image"))
-                .into(blogImg);*/
+        blogImg=findViewById(R.id.blogImg);
+        String image = extras.getString("image");
+        Glide.with(this).load(image).into(blogImg);
+        /*Glide.with(this).load(extras.getString("image"))
+                .into(ImageView.blogImg.);*/
 
         String title= extras.getString("title");
         String description = extras.getString("description");
@@ -104,11 +108,11 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
       //  comentList.add(new Coment(title_coment, description_coment));
         //blog = new Blog(title,description);
-        blogImg=findViewById(R.id.blogImg);
+
         blogTitle=findViewById(R.id.blogTitle);
         blogDescription=findViewById(R.id.blogDescription);
 
-
+        blogImg.setImageResource(R.drawable.logo);
         blogTitle.setText(title);
         blogDescription.setText(description);
 
