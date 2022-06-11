@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.myapplication.adapters.AdapterPets;
 
@@ -30,9 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class ListFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class ListFragment extends Fragment {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerView;
     private AdapterPets adapter;
@@ -124,24 +126,38 @@ public class ListFragment extends Fragment implements SearchView.OnQueryTextList
 
             }
         }));
-        search.setOnQueryTextListener(this);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filtrado(s);
+                return true;
+            }
+        });
+
+    }
+
+    private void filtrado(String s) {
+        List<Pet> filterList = new ArrayList<>();
+        for (Pet pet: petsList) {
+            if (pet.getPetName().toLowerCase().contains(s.toLowerCase())){
+                filterList.add(pet);
+            }
+        }
+        if (filterList.isEmpty()){
+            Toast.makeText(getContext(), "no hay datos", Toast.LENGTH_SHORT).show();
+        }else {
+            adapter.setFilterListPet(filterList);
+        }
     }
 
 
 
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
-
-    @Override
-
-    public boolean onQueryTextChange(String s) {
-        adapter.filtrado(s);
-        return false;
-    }
 
 
 /*    @Override

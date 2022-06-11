@@ -23,8 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Blogs extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
+public class Blogs extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerViewBlog;
     private AdapterBlog adapterBlog;
@@ -91,7 +92,32 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener, Se
 
             }
         }));
-        searchView.setOnQueryTextListener(this);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filtrado(s);
+                return true;
+            }
+        });
+    }
+
+    private void filtrado(String s) {
+        List<Blog> filterList= new ArrayList<>();
+        for (Blog blog: listaBlog) {
+            if(blog.gettitle().toLowerCase().contains(s.toLowerCase())){
+                filterList.add(blog);
+            }
+        }
+        if(filterList.isEmpty()){
+            Toast.makeText(this, "no hay datos", Toast.LENGTH_SHORT).show();
+        }else {
+            adapterBlog.setFilterList(filterList);
+        }
     }
 
     @Override
@@ -104,14 +130,5 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener, Se
     }
 }
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
 
-    @Override
-    public boolean onQueryTextChange(String s) {
-        adapterBlog.filtrado(s);
-        return false;
-    }
 }
