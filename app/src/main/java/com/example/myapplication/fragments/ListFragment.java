@@ -129,16 +129,7 @@ public class ListFragment extends Fragment implements SearchView.OnQueryTextList
     }
 
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
 
-    @Override
-    public boolean onQueryTextChange(String s) {
-        adapter.filtrado(s);
-        return false;
-    }
 
     @Override
     public boolean onQueryTextSubmit(String s) {
