@@ -118,6 +118,9 @@ public class ListFragment extends Fragment {
                 intent.putExtra("contact", petSeleccionado.getContactPerson());
                 intent.putExtra("email", petSeleccionado.getEmail());
                 intent.putExtra("description", petSeleccionado.getDescription());
+                intent.putExtra("city", petSeleccionado.getCity());
+                intent.putExtra("street", petSeleccionado.getStreet());
+
                 startActivity(intent);
             }
 

@@ -18,8 +18,8 @@ public class IndividualPet extends AppCompatActivity {
         contactPerson= findViewById(R.id.contactPerson);
         emailPerson = findViewById(R.id.email);
         petDescription= findViewById(R.id.description);
-        petStreet=findViewById(R.id.tvStreet);
-        petCity=findViewById(R.id.tvCity);
+        petStreet=findViewById(R.id.street);
+        petCity=findViewById(R.id.city);
 
         Bundle extras= getIntent().getExtras();
 

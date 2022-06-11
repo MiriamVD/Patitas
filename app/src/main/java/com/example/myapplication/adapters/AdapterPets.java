@@ -52,6 +52,8 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
         String phone = pet.getPhone();
         String email=pet.getEmail();
         String description=pet.getDescription();
+        String street= pet.getStreet();
+        String city= pet.getCity();
 
         holder.petName.setText(petName);
         holder.petStatus.setText(selectedStatus);
@@ -60,6 +62,8 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
         holder.phone.setText(phone);
         holder.email.setText(email);
         holder.description.setText(description);
+        holder.city.setText(city);
+        holder.street.setText(street);
 
     }
 
@@ -75,7 +79,7 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
     }
 
     class  ViewHolderDatos extends  RecyclerView.ViewHolder{
-        TextView petName, petStatus, petType, contactPerson, phone, email,description;
+        TextView petName, petStatus, petType, contactPerson, phone, email,description, street, city;
 
         ViewHolderDatos(@NonNull View itemView){
             super(itemView);
@@ -86,6 +90,8 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
             this.phone = itemView.findViewById(R.id.phone);
             this.email = itemView.findViewById(R.id.email);
             this.description=itemView.findViewById(R.id.description);
+            this.city=itemView.findViewById(R.id.tvCity);
+            this.street=itemView.findViewById(R.id.tvStreet);
         }
     }
 }
