@@ -78,6 +78,10 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
         notifyDataSetChanged();
     }
 
+    public List<Pet> getList() {
+        return petsList;
+    }
+
     class  ViewHolderDatos extends  RecyclerView.ViewHolder{
         TextView petName, petStatus, petType, contactPerson, phone, email,description, street, city;
 

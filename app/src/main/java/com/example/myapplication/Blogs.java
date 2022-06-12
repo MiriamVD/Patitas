@@ -76,7 +76,7 @@ public class Blogs extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View view, int position) {
                 //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
-                Blog blogSeleccionado = listaBlog.get(position);
+                Blog blogSeleccionado = adapterBlog.getList().get(position);
 
                 Intent intent = new Intent(Blogs.this, IndividualBlog.class);
                 intent.putExtra("image", blogSeleccionado.getImage());

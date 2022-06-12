@@ -161,7 +161,6 @@ public AddFragment(){
     map.put("street", etStreet.getText().toString().trim());
     map.put("city", etCity.getText().toString().trim());
 
-
         FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

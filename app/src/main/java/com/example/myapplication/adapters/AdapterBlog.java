@@ -80,6 +80,10 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
         notifyDataSetChanged();
     }
 
+    public List<Blog> getList() {
+        return listaBlog;
+    }
+
     class ViewHolderDatos extends RecyclerView.ViewHolder {
         ImageView imgBlog;
         TextView title, description ;
