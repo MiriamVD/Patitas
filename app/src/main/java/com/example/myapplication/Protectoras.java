@@ -23,8 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-public class Protectoras extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
+public class Protectoras extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton btnFloat;
     private RecyclerView recyclerView;
     private AdapterProtectoras adapter;
@@ -44,6 +46,7 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
 
         recyclerView=findViewById(R.id.recyclerView);
         searchView=findViewById(R.id.search);
+        searchView.clearFocus();
         setTitle("Protectoras");
         btnFloat=findViewById(R.id.btnFloatHome);
         btnFloat.setOnClickListener((View.OnClickListener)this);
@@ -85,10 +88,34 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-        searchView.setOnQueryTextListener(this);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filtrado(s);
+                return true;
+            }
+        });
 
         }
 
+    private void filtrado(String text) {
+        List<Protectora> filterList = new ArrayList<>();
+        for (Protectora protectora: listaProtectora){
+            if(protectora.getname().toLowerCase().contains(text.toLowerCase())){
+                filterList.add(protectora);
+            }
+        }
+        if (filterList.isEmpty()){
+            Toast.makeText(this, "no hay datos", Toast.LENGTH_SHORT).show();
+        }else{
+            adapter.setFilterList(filterList);
+        }
+    }
 
 
     @Override
@@ -101,14 +128,4 @@ public class Protectoras extends AppCompatActivity implements View.OnClickListen
     }}
 
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-        adapter.filtrado(s);
-        return true;
-    }
 }

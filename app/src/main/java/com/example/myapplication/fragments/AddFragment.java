@@ -116,7 +116,7 @@ public AddFragment(){
                 Toast.makeText(getActivity(),"Debes seleccionar las opciones", Toast.LENGTH_SHORT).show();
             }else{
                 if(addPetName.isEmpty() && addPhone.isEmpty() && addContactPerson.isEmpty() &&addEmail.isEmpty()
-                        && addDescription.isEmpty () && addCity.isEmpty()){
+                        && addDescription.isEmpty () ){
                     Toast.makeText(getActivity(),"Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }else if((addPhone.length()!=9) || (addPhone.charAt(0)!='6' &&  addPhone.charAt(0)!='7' && addPhone.charAt(0)!='8' && addPhone.charAt(0)!='9' ))
 
@@ -160,7 +160,6 @@ public AddFragment(){
     map.put("selectedType",spinnerType.getSelectedItem().toString().trim());
     map.put("street", etStreet.getText().toString().trim());
     map.put("city", etCity.getText().toString().trim());
-
 
         FirebaseDatabase.getInstance().getReference().child("pets").push().setValue(map)
             .addOnSuccessListener(new OnSuccessListener<Void>() {

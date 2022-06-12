@@ -21,7 +21,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.ViewHolderDatos> {
-    private ArrayList<Protectora> listaProtectora;
+    private List<Protectora> listaProtectora;
     private List<Protectora> listaOriginal;
 
     private Context context;
@@ -77,31 +77,10 @@ public class AdapterProtectoras extends RecyclerView.Adapter<AdapterProtectoras.
 
     }
 
-    public void filtrado(String SearchView){
+    public void setFilterList(List<Protectora> filterList){
 
-        int longitud = SearchView.length();
-        if(longitud==0){
-            listaProtectora.clear();
-            listaProtectora.addAll(listaOriginal);
-        }else{
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-
-                    List<Protectora> collecion = listaProtectora.stream().filter(i -> i.getname().toLowerCase().contains(SearchView)).collect(Collectors.toList());
-                    listaProtectora.clear();
-                    listaProtectora.addAll(collecion);
-            }
-/*            else {
-                listaProtectora.clear();
-                for (Protectora prot: listaOriginal) {
-                    if(prot.getname().toLowerCase().contains(SearchView.toLowerCase(Locale.ROOT))){
-                        listaProtectora.add(prot);
-                    }
-                }
-            }*/
-        }
-
+        this.listaProtectora = filterList;
         notifyDataSetChanged();
-
 
     }
 

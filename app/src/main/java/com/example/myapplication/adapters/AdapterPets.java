@@ -52,6 +52,8 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
         String phone = pet.getPhone();
         String email=pet.getEmail();
         String description=pet.getDescription();
+        String street= pet.getStreet();
+        String city= pet.getCity();
 
         holder.petName.setText(petName);
         holder.petStatus.setText(selectedStatus);
@@ -60,6 +62,8 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
         holder.phone.setText(phone);
         holder.email.setText(email);
         holder.description.setText(description);
+        holder.city.setText(city);
+        holder.street.setText(street);
 
     }
 
@@ -69,30 +73,17 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
         return petsList.size();
     }
 
-    public void filtrado(String search) {
-        int longitud = search.length();
-        if(longitud==0){
-            petsList.clear();
-            petsList.addAll(listaOriginal);
-        }else{
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<Pet> collecion = petsList.stream().filter(i -> i.getPetName().toLowerCase().contains(search.toLowerCase())).collect(Collectors.toList());
-                petsList.clear();
-                petsList.addAll(collecion);
-
-            }else {
-                for (Pet pet: listaOriginal) {
-                    if(pet.getPetName().toLowerCase().contains(search.toLowerCase(Locale.ROOT))){
-                        petsList.add(pet);
-                    }
-                }
-            }
-        }
+    public void setFilterListPet(List<Pet>filterList) {
+        this.petsList =filterList;
         notifyDataSetChanged();
     }
 
+    public List<Pet> getList() {
+        return petsList;
+    }
+
     class  ViewHolderDatos extends  RecyclerView.ViewHolder{
-        TextView petName, petStatus, petType, contactPerson, phone, email,description;
+        TextView petName, petStatus, petType, contactPerson, phone, email,description, street, city;
 
         ViewHolderDatos(@NonNull View itemView){
             super(itemView);
@@ -103,6 +94,8 @@ public class AdapterPets extends RecyclerView.Adapter<AdapterPets.ViewHolderDato
             this.phone = itemView.findViewById(R.id.phone);
             this.email = itemView.findViewById(R.id.email);
             this.description=itemView.findViewById(R.id.description);
+            this.city=itemView.findViewById(R.id.tvCity);
+            this.street=itemView.findViewById(R.id.tvStreet);
         }
     }
 }

@@ -91,7 +91,6 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         });
 
 
-
         if(extras==null){
             finish();
             return;
@@ -99,15 +98,9 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
         blogImg=findViewById(R.id.blogImg);
         String image = extras.getString("image");
         Glide.with(this).load(image).into(blogImg);
-        /*Glide.with(this).load(extras.getString("image"))
-                .into(ImageView.blogImg.);*/
 
         String title= extras.getString("title");
         String description = extras.getString("description");
-
-
-      //  comentList.add(new Coment(title_coment, description_coment));
-        //blog = new Blog(title,description);
 
         blogTitle=findViewById(R.id.blogTitle);
         blogDescription=findViewById(R.id.blogDescription);
@@ -118,7 +111,6 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -128,16 +120,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
                     break;
                 }else {
-
                 insert();
-
-/*                    String title = comentTitle.getText().toString();
-                    String description =comentDescription.getText().toString();
-                    comentList.add(new Coment(title, description));
-                    Collections.reverse(comentList);
-                    refrescarLsita();
-                    comentTitle.setText("");
-                    comentDescription.setText("");*/
                 }
                 break;
             case R.id.btnCancelComent:
@@ -146,37 +129,9 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-    public void refrescarLsita(){
-        if (adapterComent==null)return;
-        adapterComent.setComentList(comentList);
-        adapterComent.notifyDataSetChanged();
-    }
-
-/*    private boolean updateBlog(String blogkey, String title, String description, String image){
-        root2.child(blogkey);
-        Blog blog= new Blog(blogkey,title,description, image);
-    }*/
 
     private void insert(){
-       /*
-        Map<String, Object> map=new HashMap<>();
-        map.put("title" , blogTitle.getText().toString().trim());
-        map.put("description" , blogDescription.getText().toString().trim());/
-       // String key = FirebaseDatabase.getInstance().getReference().child("blogs").push().getKey();
-/
-
-    String key = FirebaseDatabase.getInstance().getReference().child("blogs").getKey();
-        System.out.println(key);
-
-        FirebaseDatabase.getInstance().getReference().child("coment").child(key).getParent().push().setValue(map)
-
-   String key= root2.push().getKey();
-        Log.d(key,"key");
-        root2.child(key).child("coment").updateChildren(coment)*/
-
-
-        String key= root2.getKey();
-        Log.d(key,"key");
+        
         Map<String, Object> coment=new HashMap<>();
         coment.put("title_coment", comentTitle.getText().toString().trim());
         coment.put("description_coment", comentDescription.getText().toString().trim());
@@ -200,8 +155,7 @@ public class IndividualBlog extends AppCompatActivity implements View.OnClickLis
 
 
                     }
-                })
-        ;
+                });
 
     }
 

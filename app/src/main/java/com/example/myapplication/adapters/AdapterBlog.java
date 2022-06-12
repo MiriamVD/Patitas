@@ -75,26 +75,13 @@ public class AdapterBlog extends RecyclerView.Adapter<AdapterBlog.ViewHolderDato
         return listaBlog.size();
     }
 
-    public void filtrado(String searchView ) {
-        int longitud = searchView.length();
-        if(longitud==0){
-            listaBlog.clear();
-            listaBlog.addAll(listaOriginal);
-        }else{
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<Blog> collecion = listaBlog.stream().filter(i -> i.gettitle().toLowerCase().contains(searchView.toLowerCase())).collect(Collectors.toList());
-                listaBlog.clear();
-                listaBlog.addAll(collecion);
-
-            }else {
-                for (Blog blg: listaOriginal) {
-                    if(blg.gettitle().toLowerCase().contains(searchView.toLowerCase(Locale.ROOT))){
-                        listaBlog.add(blg);
-                    }
-                }
-            }
-        }
+    public void setFilterList(List<Blog> filterList) {
+        this.listaBlog =filterList;
         notifyDataSetChanged();
+    }
+
+    public List<Blog> getList() {
+        return listaBlog;
     }
 
     class ViewHolderDatos extends RecyclerView.ViewHolder {
