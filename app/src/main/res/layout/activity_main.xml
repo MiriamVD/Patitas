@@ -28,7 +28,8 @@
                 android:autoLink="phone"
                 android:text="@string/welcomeText"
                 android:textAlignment="center"
-                android:textSize="25dp"/>
+                android:textSize="25dp"
+                android:fontFamily="@font/hacuia"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -44,7 +45,9 @@
                 android:text="@string/btn_Protectoras"
                 android:textSize="20dp"
                 android:textColor="@color/white"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                android:fontFamily="@font/hacuia"/>
+            />
 
 
             <Button
@@ -56,7 +59,9 @@
                 android:onClick="onClick"
                 android:text="@string/btn_Encontrar"
                 android:textColor="@color/white"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:fontFamily="@font/hacuia"/>
+            />
 
             <Button
                 android:id="@+id/btn_Blog"
@@ -66,8 +71,10 @@
                 android:background="@drawable/rounded_border_button"
                 android:onClick="onClick"
                 android:text="@string/btn_Blog"
+                android:textSize="20dp"
                 android:textColor="@color/white"
-                android:textSize="20dp"/>
+                android:fontFamily="@font/hacuia"/>
+
 
            <!-- <Button
                 android:id="@+id/btnBlog"

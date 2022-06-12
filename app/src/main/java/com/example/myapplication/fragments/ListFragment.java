@@ -103,12 +103,10 @@ public class ListFragment extends Fragment {
         });
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(),recyclerView, new RecyclerTouchListener.ClickListener() {
-
-
             @Override
             public void onClick(View view, int position) {
                 //pasar a la actividad PantallaModificar. Le pasamos los datos con el putExtra.
-                Pet petSeleccionado = petsList.get(position);
+                Pet petSeleccionado = adapter.getList().get(position);
                 Intent intent = new Intent(getContext(), IndividualPet.class);
                 // intent.putExtra("img", blogSeleccionado.getImgBlog());
                 intent.putExtra("name", petSeleccionado.getPetName());
@@ -118,6 +116,9 @@ public class ListFragment extends Fragment {
                 intent.putExtra("contact", petSeleccionado.getContactPerson());
                 intent.putExtra("email", petSeleccionado.getEmail());
                 intent.putExtra("description", petSeleccionado.getDescription());
+                intent.putExtra("city", petSeleccionado.getCity());
+                intent.putExtra("street", petSeleccionado.getStreet());
+
                 startActivity(intent);
             }
 

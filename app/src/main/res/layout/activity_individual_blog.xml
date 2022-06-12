@@ -29,7 +29,8 @@
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/hacuia"/>
 
         <TextView
             android:id="@+id/blogDescription"
@@ -38,7 +39,8 @@
             android:layout_marginBottom="10dp"
             android:text="TextView"
             android:textColor="#000000"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:fontFamily="@font/hacuia"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -63,6 +65,7 @@
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/hacuia"
                     />
 
                 <LinearLayout
@@ -79,7 +82,8 @@
                         android:text="Título: "
                         android:textColor="#000000"
                         android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hacuia"/>
 
                     <EditText
                         android:id="@+id/comentTitlex"
@@ -87,7 +91,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:fontFamily="@font/hacuia"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,7 +108,8 @@
                         android:text="Descripción: "
                         android:textColor="#040000"
                         android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hacuia"/>
 
                     <EditText
                         android:id="@+id/x"
@@ -111,7 +117,8 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:textColor="#9A9A9A"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hacuia"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -134,7 +141,8 @@
                 android:onClick="onClick"
                 android:text="Comentar"
 
-                android:textColor="#FAF6F6" />
+                android:textColor="#FAF6F6"
+                android:fontFamily="@font/hacuia"/>
 
             <Button
                 android:id="@+id/btnCancelComent"
@@ -145,7 +153,8 @@
                 android:onClick="onClick"
                 android:text="Cancelar"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/hacuia"/>
 
         </LinearLayout>
 
@@ -165,7 +174,8 @@
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/hacuia"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView3"

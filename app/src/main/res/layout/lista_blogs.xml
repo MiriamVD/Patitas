@@ -34,7 +34,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginRight="10dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:fontFamily="@font/hacuia"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="TextView"
                     android:textColor="#000000"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hacuia"/>
 
                 <TextView
                     android:id="@+id/descriptionBlog"
@@ -58,7 +60,8 @@
                     android:text="TextView"
                     android:textColor="#000000"
                     android:maxLines="2"
-                    android:ellipsize="end"/>
+                    android:ellipsize="end"
+                    android:fontFamily="@font/hacuia"/>
 
             </LinearLayout>
 
